@@ -28,12 +28,12 @@ if settings.SENTRY_DSN:
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     await redis_manager.connect()
-    await message_publisher.connect()
+    # await message_publisher.connect()
     logger.info("Redis connected")
     logger.info("RabbitMQ connected")
     yield
     await redis_manager.close()
-    await message_publisher.close()
+    # await message_publisher.close()
     logger.info("Redis disconnected")
     logger.info("RabbitMQ disconnected")
 
@@ -44,7 +44,8 @@ app.include_router(router=api_router, prefix="/api/v1")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.all_cors_origins,
+    # allow_origins=settings.all_cors_origins,
+    allow_origins=['*'],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

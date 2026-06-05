@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 
 class LessonService:
-    def __init__(self, session: AsyncSession, message_publisher: RabbitMQConnection):
+    def __init__(self, session: AsyncSession, message_publisher: RabbitMQConnection | None = None):
         self.lesson_repo = LessonRepository(session)
         self.message_publisher = message_publisher
 
@@ -62,7 +62,7 @@ class LessonService:
                 new_lesson=new_lesson,
             )
             event_dict = event.model_dump(mode="json")
-            await self.message_publisher.publish(routing_key="lesson.updated", message=event_dict)
+            # await self.message_publisher.publish(routing_key="lesson.updated", message=event_dict)
             return updated_lesson
         except IntegrityError as e:
             logger.error(f"Integirity error while updating Lesson: {str(e)}")

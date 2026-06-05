@@ -56,9 +56,9 @@ TeacherServiceDep = Annotated[TeacherService, Depends(get_teacher_service)]
 
 async def get_lesson_service(
     session: AsyncSession = Depends(get_db),
-    message_publisher: RabbitMQConnection = Depends(get_publisher),
+    # message_publisher: RabbitMQConnection = Depends(get_publisher),
 ):
-    return LessonService(session=session, message_publisher=message_publisher)
+    return LessonService(session=session)
 
 
 LessonServiceDep = Annotated[LessonService, Depends(get_lesson_service)]
