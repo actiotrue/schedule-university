@@ -1,7 +1,7 @@
-import { MutationConfig } from '@/lib/react-query';
+import { MutationConfig } from '@/shared/lib/react-query';
 import z from 'zod';
 import RoomService from './service';
-import { useErrorHandler } from '@/hooks/useErrorHandler';
+import { useErrorHandler } from '@/shared/hooks/useErrorHandler';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import { getRoomQueryOptions } from './get-room';
 import { getRoomsQueryOptions } from './get-rooms';

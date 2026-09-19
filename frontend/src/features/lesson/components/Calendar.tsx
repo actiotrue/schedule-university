@@ -1,5 +1,5 @@
 import * as calendar from '../utils/calendar';
-import useAppSearchParams from '@/hooks/useAppSearchParams';
+import useAppSearchParams from '@/shared/hooks/useAppSearchParams';
 import { useEffect } from 'react';
 import { Button } from '@/components/generic/Button';
 import { useCalendar } from '@/context/CalendarProvider';

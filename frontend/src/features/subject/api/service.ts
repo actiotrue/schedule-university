@@ -1,5 +1,5 @@
-import { apiRoutes } from '@/api/apiRoutes';
-import api from '@/api/axiosConfig';
+import { apiRoutes } from '@/shared/api/apiRoutes';
+import api from '@/shared/api/axiosConfig';
 import z from 'zod';
 import { CreateSubjectForm } from './create-subject';
 import { UpdateSubjectForm } from './update-subject';

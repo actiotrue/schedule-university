@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cn } from '@/shared/lib/utils';
 import { UseFormRegisterReturn } from 'react-hook-form';
 import { FormError } from './FormError';
 import { SelectHTMLAttributes } from 'react';

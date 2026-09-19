@@ -1,8 +1,8 @@
-import { MutationConfig } from '@/lib/react-query';
+import { MutationConfig } from '@/shared/lib/react-query';
 import z from 'zod';
 import LessonService from './service';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useErrorHandler } from '@/hooks/useErrorHandler';
+import { useErrorHandler } from '@/shared/hooks/useErrorHandler';
 
 export const createLessonSchema = z.object({
   time_id: z.string().min(1, 'Выберите время'),

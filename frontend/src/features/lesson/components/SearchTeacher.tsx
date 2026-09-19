@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Combobox } from '@/components/generic/Combobox';
-import useAppSearchParams from '@/hooks/useAppSearchParams';
+import useAppSearchParams from '@/shared/hooks/useAppSearchParams';
 import { ScheduleType } from '../types/consts';
 import { List } from '@/components/generic/List';
 import { ListItem } from '@/components/generic/ListItem';
-import useDebounce from '@/hooks/useDebounce';
+import useDebounce from '@/shared/hooks/useDebounce';
 import Spinner from '@/components/generic/Spinner';
 import { useSearchTeachers } from '../api/search-teachers';
 import { useTeacher } from '@/features/teacher/api/get-teacher';

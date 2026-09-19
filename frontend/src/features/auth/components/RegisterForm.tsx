@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { RegisterFormData, registerFormSchema } from '../api/auth-user';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormInput } from '@/components/generic/FormInput';
-import useAuth from '@/hooks/useAuth';
+import useAuth from '@/shared/hooks/useAuth';
 
 export const RegisterForm = () => {
   const { registerMutation, loginMutation } = useAuth();
@@ -39,27 +39,27 @@ export const RegisterForm = () => {
                 <span>{errors.root.message}</span>
               </div>
             )}
-              <FormInput
-                label="Почта"
-                type="email"
-                placeholder="Введите почту"
-                errorText={errors.email?.message}
-                registration={register('email')}
-              />
-              <FormInput
-                label="Пароль"
-                type="password"
-                placeholder="Введите пароль"
-                errorText={errors.password?.message}
-                registration={register('password')}
-              />
-              <FormInput
-                label="Повторите пароль"
-                type="password"
-                placeholder="Повторите пароль"
-                errorText={errors.repeat_password?.message}
-                registration={register('repeat_password')}
-              />
+            <FormInput
+              label="Почта"
+              type="email"
+              placeholder="Введите почту"
+              errorText={errors.email?.message}
+              registration={register('email')}
+            />
+            <FormInput
+              label="Пароль"
+              type="password"
+              placeholder="Введите пароль"
+              errorText={errors.password?.message}
+              registration={register('password')}
+            />
+            <FormInput
+              label="Повторите пароль"
+              type="password"
+              placeholder="Повторите пароль"
+              errorText={errors.repeat_password?.message}
+              registration={register('repeat_password')}
+            />
             <div className="form-control mt-6 w-full max-w-xs">
               <button
                 type="submit"

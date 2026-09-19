@@ -1,5 +1,5 @@
-import { useErrorHandler } from '@/hooks/useErrorHandler';
-import { MutationConfig } from '@/lib/react-query';
+import { useErrorHandler } from '@/shared/hooks/useErrorHandler';
+import { MutationConfig } from '@/shared/lib/react-query';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import RoomService from './service';
 import { getRoomsQueryOptions } from './get-rooms';

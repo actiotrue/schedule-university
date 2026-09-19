@@ -1,5 +1,5 @@
 import { queryOptions, useQuery } from '@tanstack/react-query';
-import { QueryConfig } from '@/lib/react-query';
+import { QueryConfig } from '@/shared/lib/react-query';
 import RoomService from '@/features/room/api/service';
 
 export const searchRoomsQueryOptions = (searchTerm: string) => {

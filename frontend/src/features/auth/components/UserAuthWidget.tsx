@@ -1,4 +1,4 @@
-import useAuth, { isLoggedIn } from '@/hooks/useAuth';
+import useAuth, { isLoggedIn } from '@/shared/hooks/useAuth';
 import { Link } from 'react-router';
 
 const UserAuthWidget = () => {

@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import GroupService from './service';
-import { MutationConfig } from '@/lib/react-query';
-import { useErrorHandler } from '@/hooks/useErrorHandler';
+import { MutationConfig } from '@/shared/lib/react-query';
+import { useErrorHandler } from '@/shared/hooks/useErrorHandler';
 import { getGroupsSummaryQueryOption } from './get-groups-summary';
 
 type DeleteGroupOptions = {

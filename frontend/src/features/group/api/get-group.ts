@@ -1,6 +1,6 @@
 import { queryOptions, useQuery } from '@tanstack/react-query';
 import GroupService from './service';
-import { QueryConfig } from '@/lib/react-query';
+import { QueryConfig } from '@/shared/lib/react-query';
 
 export const getGroupQueryOptions = (groupId: string) => {
   return queryOptions({

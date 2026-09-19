@@ -1,10 +1,10 @@
-import { MutationConfig } from '@/lib/react-query';
+import { MutationConfig } from '@/shared/lib/react-query';
 import z from 'zod';
 import TeacherService from './service';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useErrorHandler } from '@/hooks/useErrorHandler';
+import { useErrorHandler } from '@/shared/hooks/useErrorHandler';
 import { getTeachersQueryOptions } from './get-teachers';
-import { nullableString } from '@/lib/zod-types';
+import { nullableString } from '@/shared/lib/zod-types';
 
 export const createTeacherFormSchema = z.object({
   first_name: z.string().min(5, 'Поле должно содержать минимум 5 символов'),

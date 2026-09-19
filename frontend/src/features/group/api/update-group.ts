@@ -1,8 +1,8 @@
-import { MutationConfig } from '@/lib/react-query';
+import { MutationConfig } from '@/shared/lib/react-query';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import z from 'zod';
 import GroupService from './service';
-import { useErrorHandler } from '@/hooks/useErrorHandler';
+import { useErrorHandler } from '@/shared/hooks/useErrorHandler';
 import { getGroupQueryOptions } from './get-group';
 import { getGroupsSummaryQueryOption } from './get-groups-summary';
 

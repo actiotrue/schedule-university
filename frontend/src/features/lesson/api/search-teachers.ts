@@ -1,5 +1,5 @@
 import { queryOptions, useQuery } from '@tanstack/react-query';
-import { QueryConfig } from '@/lib/react-query';
+import { QueryConfig } from '@/shared/lib/react-query';
 import TeacherService from '@/features/teacher/api/service';
 
 export const searchTeachersQueryOptions = (searchTerm: string) => {

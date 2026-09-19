@@ -1,7 +1,7 @@
-import { MutationConfig } from '@/lib/react-query';
+import { MutationConfig } from '@/shared/lib/react-query';
 import SubjectService from './service';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useErrorHandler } from '@/hooks/useErrorHandler';
+import { useErrorHandler } from '@/shared/hooks/useErrorHandler';
 import { getSubjectsQueryOptions } from './get-subjects';
 
 type DeleteSubjectOptions = {

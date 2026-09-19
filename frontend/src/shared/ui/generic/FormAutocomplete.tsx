@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { FormError } from './FormError';
-import { cn } from '@/lib/utils';
+import { cn } from '@/shared/lib/utils';
 
 interface FormComboboxProps {
   setIsOpen: (isOpen: boolean) => void;

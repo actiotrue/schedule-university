@@ -1,5 +1,5 @@
-import api from '@/api/axiosConfig';
-import { apiRoutes } from '@/api/apiRoutes';
+import api from '@/shared/api/axiosConfig';
+import { apiRoutes } from '@/shared/api/apiRoutes';
 import { CreateRoomForm } from './create-room';
 import z from 'zod';
 import { UpdateRoomForm } from './update-room';

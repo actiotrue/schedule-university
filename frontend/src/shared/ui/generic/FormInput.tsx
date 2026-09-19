@@ -1,6 +1,6 @@
 import { UseFormRegisterReturn } from 'react-hook-form';
 import { FormError } from './FormError';
-import { cn } from '@/lib/utils';
+import { cn } from '@/shared/lib/utils';
 import { InputHTMLAttributes } from 'react';
 
 interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {

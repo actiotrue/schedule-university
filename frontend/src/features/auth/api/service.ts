@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
-import api from '@/api/axiosConfig';
+import api from '@/shared/api/axiosConfig';
 import z from 'zod';
-import { apiRoutes } from '@/api/apiRoutes';
+import { apiRoutes } from '@/shared/api/apiRoutes';
 
 export const userSchema = z.object({
   id: z.string(),

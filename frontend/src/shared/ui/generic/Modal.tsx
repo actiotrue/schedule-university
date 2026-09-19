@@ -33,7 +33,7 @@ export default function Modal({
         onClose={onClose}
       >
         <div className="modal-box max-w-md p-0 overflow-hidden shadow-2xl">
-          <div className="bg-gradient-to-r from-green-600 to-green-400 p-6">
+          <div className="bg-linear-to-r from-green-600 to-green-400 p-6">
             <h3 className="font-bold text-xl text-white">{header}</h3>
           </div>
           <div className="p-6 bg-base-100">{children}</div>

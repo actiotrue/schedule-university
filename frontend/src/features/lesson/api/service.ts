@@ -1,7 +1,7 @@
-import api from '@/api/axiosConfig';
+import api from '@/shared/api/axiosConfig';
 import z from 'zod';
 import { CreateLessonForm } from './create-lesson';
-import { apiRoutes } from '@/api/apiRoutes';
+import { apiRoutes } from '@/shared/api/apiRoutes';
 import { subjectSchema } from '@/features/subject/api/service';
 import { teacherSchema } from '@/features/teacher/api/service';
 import { roomSchema } from '@/features/room/api/service';

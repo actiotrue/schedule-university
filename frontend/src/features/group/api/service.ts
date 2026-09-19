@@ -1,8 +1,8 @@
 import z from 'zod';
 import { CreateGroupForm } from './create-group';
-import api from '@/api/axiosConfig';
+import api from '@/shared/api/axiosConfig';
 import { UpdateGroupForm } from './update-group';
-import { apiRoutes } from '@/api/apiRoutes';
+import { apiRoutes } from '@/shared/api/apiRoutes';
 
 export const groupSchema = z.object({
   id: z.number().transform((val) => val.toString()),

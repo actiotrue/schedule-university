@@ -1,8 +1,8 @@
-import { useErrorHandler } from '@/hooks/useErrorHandler';
+import { useErrorHandler } from '@/shared/hooks/useErrorHandler';
 import GroupService from './service';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import z from 'zod';
-import { MutationConfig } from '@/lib/react-query';
+import { MutationConfig } from '@/shared/lib/react-query';
 import { getGroupsSummaryQueryOption } from './get-groups-summary';
 
 export const createGroupFormSchema = z.object({

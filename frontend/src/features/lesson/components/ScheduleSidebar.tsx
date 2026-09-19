@@ -1,5 +1,5 @@
 import { Button } from '@/components/generic/Button';
-import useAppSearchParams from '@/hooks/useAppSearchParams';
+import useAppSearchParams from '@/shared/hooks/useAppSearchParams';
 import { Calendar } from './Calendar';
 import { ScheduleType } from '../types/consts';
 import { useEffect, useState } from 'react';

@@ -1,4 +1,4 @@
-import useAuth, { isLoggedIn } from '@/hooks/useAuth';
+import useAuth, { isLoggedIn } from '@/shared/hooks/useAuth';
 import { RoleName } from '@/types';
 import { Navigate } from 'react-router';
 

@@ -1,5 +1,5 @@
-import { useErrorHandler } from '@/hooks/useErrorHandler';
-import { MutationConfig } from '@/lib/react-query';
+import { useErrorHandler } from '@/shared/hooks/useErrorHandler';
+import { MutationConfig } from '@/shared/lib/react-query';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import { getTeachersQueryOptions } from './get-teachers';
 import TeacherService from './service';
