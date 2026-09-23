@@ -7,11 +7,7 @@ interface SwitchProps extends React.InputHTMLAttributes<HTMLInputElement> {
   registration?: Partial<UseFormRegisterReturn>;
 }
 
-export default function Switch({
-  className,
-  registration,
-  ...props
-}: SwitchProps) {
+export const Switch = ({ className, registration, ...props }: SwitchProps) => {
   return (
     <input
       type="checkbox"
@@ -20,4 +16,4 @@ export default function Switch({
       {...props}
     />
   );
-}
+};

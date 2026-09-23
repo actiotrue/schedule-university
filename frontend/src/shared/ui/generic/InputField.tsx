@@ -6,11 +6,7 @@ interface InputFieldProps {
   onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
-export default function InputField({
-  label,
-  value,
-  onChange,
-}: InputFieldProps) {
+export const InputField = ({ label, value, onChange }: InputFieldProps) => {
   return (
     <label className="floating-label">
       <input
@@ -23,4 +19,4 @@ export default function InputField({
       <span>{label}</span>
     </label>
   );
-}
+};

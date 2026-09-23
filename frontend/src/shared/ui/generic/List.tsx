@@ -1,5 +1,4 @@
-interface FormAutocompleteListProps
-  extends React.HTMLAttributes<HTMLUListElement> {
+interface FormAutocompleteListProps extends React.HTMLAttributes<HTMLUListElement> {
   children: React.ReactNode;
 }
 

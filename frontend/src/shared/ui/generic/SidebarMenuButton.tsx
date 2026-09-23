@@ -7,12 +7,12 @@ interface SidebarMenuButtonProps {
   onClick: () => void;
 }
 
-export default function SidebarMenuButton({
+export const SidebarMenuButton = ({
   isActive,
   children,
   path,
   onClick,
-}: SidebarMenuButtonProps) {
+}: SidebarMenuButtonProps) => {
   return (
     <li>
       <Link
@@ -26,4 +26,4 @@ export default function SidebarMenuButton({
       </Link>
     </li>
   );
-}
+};

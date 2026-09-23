@@ -1,7 +1,7 @@
-import UserAuthWidget from '@/features/auth/components/UserAuthWidget';
+import UserAuthWidget from '@/features/auth/ui/UserAuthWidget';
 import { Link } from 'react-router';
 
-export default function Nav() {
+export const Nav = () => {
   return (
     <header className="navbar bg-green-600 shadow-sm px-4">
       <div className="flex-1">
@@ -14,4 +14,4 @@ export default function Nav() {
       </div>
     </header>
   );
-}
+};

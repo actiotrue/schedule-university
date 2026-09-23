@@ -8,13 +8,13 @@ interface ModalProps {
   onClose: () => void;
 }
 
-export default function Modal({
+export const Modal = ({
   header,
   triggerButton,
   children,
   isOpen,
   onClose,
-}: ModalProps) {
+}: ModalProps) => {
   const modalRef = useRef<HTMLDialogElement>(null);
   useEffect(() => {
     if (isOpen) {
@@ -45,4 +45,4 @@ export default function Modal({
       </dialog>
     </>
   );
-}
+};

@@ -40,7 +40,7 @@ const sizeStyles: Record<BadgeSize, string> = {
   xl: 'badge-xl',
 };
 
-export default function Badge({
+export function Badge({
   children,
   className,
   variant = 'default',

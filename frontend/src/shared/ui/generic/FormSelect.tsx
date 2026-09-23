@@ -11,14 +11,14 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   errorText?: string;
 }
 
-export default function FormSelect({
+export const FormSelect = ({
   className,
   label,
   children,
   registration,
   errorText,
   ...props
-}: SelectProps) {
+}: SelectProps) => {
   return (
     <div className="form-control w-full">
       <label className="label">
@@ -38,4 +38,4 @@ export default function FormSelect({
       {errorText && <FormError message={errorText} />}
     </div>
   );
-}
+};

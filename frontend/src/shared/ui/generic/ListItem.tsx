@@ -1,7 +1,6 @@
 import React from 'react';
 
-interface FormAutocompleteItemProps
-  extends React.LiHTMLAttributes<HTMLLIElement> {
+interface FormAutocompleteItemProps extends React.LiHTMLAttributes<HTMLLIElement> {
   children: React.ReactNode;
 }
 
