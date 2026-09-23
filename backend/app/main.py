@@ -15,6 +15,7 @@ from app.configure_logging import configure_logging
 from app.cache.manager import redis_manager
 from app.router import api_router
 from app.core.config import settings
+from fastapi.routing import APIRoute
 import sentry_sdk
 
 logger = logging.getLogger(__name__)
@@ -37,8 +38,10 @@ async def lifespan(app: FastAPI):
     logger.info("Redis disconnected")
     logger.info("RabbitMQ disconnected")
 
+def custom_generate_unique_id(route: APIRoute) -> str:
+    return route.name
 
-app = FastAPI(lifespan=lifespan)
+app = FastAPI(lifespan=lifespan,generate_unique_id_function=custom_generate_unique_id)
 
 app.include_router(router=api_router, prefix="/api/v1")
 
@@ -83,3 +86,6 @@ async def validation_exception_handler2(req: Request, exc: ResponseValidationErr
         status_code=status.HTTP_400_BAD_REQUEST,
         content={"detail": "Validation error", "errors": exc.errors()},
     )
+
+
+            
