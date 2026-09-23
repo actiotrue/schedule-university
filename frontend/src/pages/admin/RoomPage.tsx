@@ -1,5 +1,6 @@
-import { CreateRoom } from '@/features/room/components/CreateRoom';
-import { RoomsList } from '@/features/room/components/RoomsList';
+import { RoomsList } from "@/entities/room";
+import { CreateRoom } from "@/features/manage-room";
+
 
 const RoomPage = () => {
   return (

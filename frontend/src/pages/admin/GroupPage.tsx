@@ -1,5 +1,6 @@
-import { CreateGroup } from '@/features/group/components/CreateGroup';
-import { GroupsList } from '@/features/group/components/GroupsList';
+import { GroupsList } from "@/entities/group";
+import { CreateGroup } from "@/features/manage-group";
+
 
 const GroupPage = () => {
   return (

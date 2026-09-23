@@ -1,9 +1,10 @@
-import Switch from '@/components/generic/Switch';
-import { CreateLesson } from '@/features/lesson/components/CreateLesson';
-import { LessonsRouter } from '@/features/lesson/components/LessonsRouter';
-import { ScheduleSidebar } from '@/features/lesson/components/ScheduleSidebar';
-import { ViewMode } from '@/types/view';
-import { useState } from 'react';
+import { LessonsRouter } from "@/entities/lesson/ui/LessonsRouter";
+import { ScheduleSidebar } from "@/entities/lesson/ui/ScheduleSidebar";
+import { CreateLesson } from "@/features/manage-lesson";
+import { Switch } from "@/shared/ui/generic";
+import { ViewMode } from "@/types/view";
+import { useState } from "react";
+
 
 export default function LessonPage() {
   const [viewMode, setVeiwMode] = useState<ViewMode>('list');
