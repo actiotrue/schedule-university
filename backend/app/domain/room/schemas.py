@@ -1,11 +1,12 @@
 from datetime import datetime
 
-from pydantic import BaseModel, ConfigDict, Field
+from app.core.base_schema import BaseSchema
+from pydantic import ConfigDict, Field
 
 from app.domain.building.schemas import BuildingRead
 
 
-class RoomBase(BaseModel):
+class RoomBase(BaseSchema):
     name: str
     floor: int
     capacity: int
