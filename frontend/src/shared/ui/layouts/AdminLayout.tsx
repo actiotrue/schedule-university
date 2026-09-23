@@ -3,12 +3,11 @@ import { SlGraduation, SlEvent } from 'react-icons/sl';
 import { LuHouse } from 'react-icons/lu';
 import { IoMdBook } from 'react-icons/io';
 import { GrGroup } from 'react-icons/gr';
-import SidebarMenu from '@/components/generic/SidebarMenu';
-import SidebarMenuButton from '@/components/generic/SidebarMenuButton';
 import { IconType } from 'react-icons/lib';
 import { useState } from 'react';
-import Nav from '../generic/Nav';
-import Footer from '../generic/Footer';
+import { Nav } from '../generic/Nav';
+import { Footer } from '../generic/Footer';
+import { SidebarMenu, SidebarMenuButton } from '../generic';
 
 interface NavigationItem {
   id: string;
