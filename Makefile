@@ -1,4 +1,4 @@
-.PHONY: local dev create-migration migrate stop backend lint format type-check test
+.PHONY: local dev create-migration migrate stop backend lint format type-check test-backend
 
 local:
 	docker compose up -d redis rabbitmq
@@ -46,8 +46,8 @@ format:
 type-check:
 	uvx pyright
 
-test:
-	uv run pytest -v -s --tb=short -x
+test-backend:
+	cd backend && uv run pytest -v -s --tb=short -x
 
 check: format lint type-check
 
