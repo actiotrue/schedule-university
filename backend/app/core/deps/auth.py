@@ -2,6 +2,7 @@ import logging
 from typing import Annotated
 import uuid
 
+from app.db.models import User
 from fastapi import Depends, Request
 from fastapi.security import OAuth2PasswordBearer
 from jose import ExpiredSignatureError, JWTError
@@ -33,7 +34,7 @@ def get_refresh_token(request: Request):
 async def get_current_user(
     service: AuthServiceDep,
     token: str = Depends(oauth2_scheme),
-) -> UserRead:
+) -> User:
     try:
         payload = decode_token(token=token)
     except ExpiredSignatureError:
@@ -46,7 +47,7 @@ async def get_current_user(
     if not user:
         logger.warning(f"User with ID {payload['sub']} not found.")
         raise NotFoundException("User", payload["sub"])
-    return UserRead.model_validate(user)
+    return user
 
 
 CurrentUser = Annotated[UserRead, Depends(get_current_user)]

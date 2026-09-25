@@ -11,7 +11,6 @@ from app.db.database import Base
 
 logger = logging.getLogger(__name__)
 
-
 T = TypeVar("T", bound=Base)
 
 
