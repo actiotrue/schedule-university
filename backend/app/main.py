@@ -1,15 +1,14 @@
 import logging
 import time
-from typing import Any
+from typing import Awaitable, Callable
 import uuid
 
 from contextlib import asynccontextmanager
 
 from app.core.broker.dep import message_publisher
-from fastapi import FastAPI, Request, Response, status
-from fastapi.exceptions import RequestValidationError, ResponseValidationError
+from app.exeption_handlers import register_exception_handlers
+from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
 
 from app.configure_logging import configure_logging
 from app.cache.manager import redis_manager
@@ -29,13 +28,13 @@ if settings.SENTRY_DSN:
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     await redis_manager.connect()
-    await message_publisher.connect()
     logger.info("Redis connected")
+    await message_publisher.connect()
     logger.info("RabbitMQ connected")
     yield
     await redis_manager.close()
-    await message_publisher.close()
     logger.info("Redis disconnected")
+    await message_publisher.close()
     logger.info("RabbitMQ disconnected")
 
 def custom_generate_unique_id(route: APIRoute) -> str:
@@ -55,12 +54,12 @@ app.add_middleware(
 
 
 @app.middleware("http")
-async def log_requests(request: Request, call_next) -> Response | Any:
+async def log_requests(request: Request, call_next: Callable[[Request],Awaitable[Response]]) -> Response:
     request_id = str(uuid.uuid1())
     logger.info(f"Request started | ID: {request_id} | {request.method} {request.url}")
 
     start_time = time.perf_counter()
-    response: Response = await call_next(request)
+    response = await call_next(request)
     process_time = (time.perf_counter() - start_time) * 1000
 
     logger.info(
@@ -70,22 +69,4 @@ async def log_requests(request: Request, call_next) -> Response | Any:
     return response
 
 
-@app.exception_handler(RequestValidationError)
-async def validation_exception_handler(req: Request, exc: RequestValidationError) -> JSONResponse:
-    logger.error(f"Validation error: {exc.errors()}")
-    return JSONResponse(
-        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-        content={"detail": "Validation error", "errors": exc.errors()},
-    )
-
-
-@app.exception_handler(ResponseValidationError)
-async def validation_exception_handler2(req: Request, exc: ResponseValidationError) -> JSONResponse:
-    logger.error(f"Validation error: {exc.errors()}")
-    return JSONResponse(
-        status_code=status.HTTP_400_BAD_REQUEST,
-        content={"detail": "Validation error", "errors": exc.errors()},
-    )
-
-
-            
+register_exception_handlers(app)
