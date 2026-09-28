@@ -1,16 +1,19 @@
 import { useGetCurrentUser, useLogoutUserMutation } from '@/entities/user';
 import { Link } from 'react-router';
 
-const UserAuthWidget = () => {
+export const UserAuthWidget = () => {
   const logoutMutation = useLogoutUserMutation();
   const { data: user, isLoading } = useGetCurrentUser();
 
   const handleLogout = () => {
-    logoutMutation.mutate({}, {
-      onSuccess: () => {
-        localStorage.removeItem('accessToken'); 
-      }
-    });
+    logoutMutation.mutate(
+      {},
+      {
+        onSuccess: () => {
+          localStorage.removeItem('accessToken');
+        },
+      },
+    );
   };
 
   if (isLoading) {
@@ -63,5 +66,3 @@ const UserAuthWidget = () => {
     </Link>
   );
 };
-
-export default UserAuthWidget;

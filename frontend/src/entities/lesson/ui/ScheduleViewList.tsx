@@ -1,10 +1,10 @@
-import { Badge } from '@/components/generic/Badge';
-import { LessonByQuery } from '../api/service';
 import { LessonCard } from './LessonCard';
 import { TIME_SLOTS } from '../model/consts';
+import { LessonById } from '@/client';
+import { Badge } from '@/shared/ui/generic';
 
 interface ScheduleViewListProps {
-  lessons?: LessonByQuery[];
+  lessons?: LessonById[];
   selectedDayWeek?: number;
 }
 
@@ -13,14 +13,14 @@ export const ScheduleViewList = ({
   selectedDayWeek,
 }: ScheduleViewListProps) => {
   const filtredLessons = lessons?.filter(
-    (lesson) => lesson.day_of_week === selectedDayWeek,
+    (lesson) => lesson.dayOfWeek === selectedDayWeek,
   );
   return (
     <div className="px-6">
       <div className="flex flex-col gap-4">
         {TIME_SLOTS.map((timeSlot) => {
           const lessonForSlot = filtredLessons.find(
-            (lesson) => lesson.time_id === timeSlot.id,
+            (lesson) => lesson.timeId === timeSlot.id,
           );
           return (
             <div key={timeSlot.id} className="flex flex-col gap-2">

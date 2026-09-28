@@ -1,15 +1,13 @@
-import { useState } from 'react';
-import { Combobox } from '@/components/generic/Combobox';
-import useAppSearchParams from '@/shared/hooks/useAppSearchParams';
-import { ScheduleType } from '../model/consts';
-import { List } from '@/components/generic/List';
-import { ListItem } from '@/components/generic/ListItem';
-import useDebounce from '@/shared/hooks/useDebounce';
-import { useSearchRooms } from '../api/search-rooms';
-import { Spinner } from '@/components/generic/Spinner';
-import { Badge } from '@/components/generic/Badge';
-import { useRoom } from '@/features/room/api/get-room';
 import { useCalendar } from '@/context/CalendarProvider';
+import useAppSearchParams from '@/shared/hooks/useAppSearchParams';
+import useDebounce from '@/shared/hooks/useDebounce';
+import { Badge, Spinner, Combobox, List, ListItem } from '@/shared/ui/generic';
+import { useState } from 'react';
+import { ScheduleType } from '../model/consts';
+import {
+  useGetRoomQuery,
+  useSearchRoomsQuery,
+} from '@/entities/room/api/queries';
 
 export const SearchRoom = () => {
   const [inputValue, setInputValue] = useState<string>('');
@@ -19,18 +17,11 @@ export const SearchRoom = () => {
   const { resetToToday } = useCalendar();
   const { updateParams, getParam } = useAppSearchParams();
 
-  const roomId = getParam(ScheduleType.ROOM);
+  const selectedRoomQuery = useGetRoomQuery(getParam(ScheduleType.ROOM));
+  const selectedRoom = selectedRoomQuery.data;
 
-  const roomQuery = useRoom({
-    roomId: roomId!,
-    queryConfig: { enabled: !!roomId },
-  });
-
-  const roomsSearchQuery = useSearchRooms({
-    searchTerm: debouncedSearchTerm,
-    queryConfig: { enabled: !!debouncedSearchTerm },
-  });
-  const rooms = roomsSearchQuery.data;
+  const roomsSearchQuery = useSearchRoomsQuery(debouncedSearchTerm);
+  const foundRooms = roomsSearchQuery.data;
 
   const handleRoomSelect = (roomId: string) => {
     setIsListOpen(false);
@@ -45,8 +36,8 @@ export const SearchRoom = () => {
 
   return (
     <div className="space-y-4">
-      {roomQuery.data && <Badge size="xl">{roomQuery.data.name}</Badge>}
-      {roomId && roomQuery.isLoading && <Spinner />}
+      {selectedRoom && <Badge size="xl">{selectedRoom.name}</Badge>}
+      {selectedRoomQuery.isLoading && <Spinner />}
       <Combobox
         inputValue={inputValue}
         setIsOpen={setIsListOpen}
@@ -55,9 +46,9 @@ export const SearchRoom = () => {
           setInputValue(e.target.value);
         }}
       >
-        {isListOpen && (rooms?.length ?? 0) > 0 && (
+        {isListOpen && (foundRooms?.length ?? 0) > 0 && (
           <List>
-            {rooms?.map((room) => (
+            {foundRooms?.map((room) => (
               <ListItem
                 key={room.id}
                 onClick={() => {
@@ -74,11 +65,13 @@ export const SearchRoom = () => {
             <Spinner />
           </List>
         )}
-        {isListOpen && !roomsSearchQuery.isLoading && rooms?.length === 0 && (
-          <List>
-            <div className="p-3 text-center">Ничего не найдена</div>
-          </List>
-        )}
+        {isListOpen &&
+          !roomsSearchQuery.isLoading &&
+          foundRooms?.length === 0 && (
+            <List>
+              <div className="p-3 text-center">Ничего не найдена</div>
+            </List>
+          )}
       </Combobox>
     </div>
   );

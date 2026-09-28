@@ -17,7 +17,7 @@ export const useGetTeacherQuery = (teacherId: number) => {
   });
 };
 
-export const searchTeachersQuery = (teacherName: string) => {
+export const useSearchTeachersQuery = (teacherName: string) => {
   const query = teacherName.trim();
   return useQuery({
     ...searchTeachersByNameOptions({ query: { query: query } }),

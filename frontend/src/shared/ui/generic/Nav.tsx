@@ -1,4 +1,4 @@
-import UserAuthWidget from '@/features/auth/ui/UserAuthWidget';
+import { UserAuthWidget } from '@/widgets';
 import { Link } from 'react-router';
 
 export const Nav = () => {

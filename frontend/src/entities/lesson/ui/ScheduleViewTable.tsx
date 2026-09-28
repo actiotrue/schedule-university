@@ -1,25 +1,22 @@
 import { useState } from 'react';
-import { LessonByQuery } from '../api/service';
 import { DAYS_OF_WEAK, TIME_SLOTS } from '../model/consts';
-import { UpdateLesson } from './UpdateLesson';
 import { EditLesson } from '@/features/manage-lesson/ui/EditLesson';
+import { LessonById } from '@/client';
 
 interface ScheduleViewTableProps {
-  lessons?: LessonByQuery[];
+  lessons?: LessonById[];
 }
 
 export const ScheduleViewTable = ({ lessons = [] }: ScheduleViewTableProps) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [selectedLesson, setSelectedLesson] = useState<LessonByQuery | null>(
-    null,
-  );
+  const [selectedLesson, setSelectedLesson] = useState<LessonById | null>(null);
   const findLesson = (dayId: number, timeId: number) => {
     return lessons.find(
-      (lesson) => lesson.day_of_week === dayId && lesson.time_id === timeId,
+      (lesson) => lesson.dayOfWeek === dayId && lesson.timeId === timeId,
     );
   };
 
-  const handleLessonClick = (lesson: LessonByQuery) => {
+  const handleLessonClick = (lesson: LessonById) => {
     if (lesson) {
       setSelectedLesson(lesson);
       setIsModalOpen(true);

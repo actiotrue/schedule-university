@@ -1,16 +1,25 @@
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
-import { RegisterFormData, registerFormSchema } from '../api/auth-user';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FormInput } from '@/components/generic/FormInput';
-import useAuth from '@/shared/hooks/useAuth';
+import { FormInput } from '@/shared/ui/generic';
+import { RegisterFormData, registerFormSchema } from '../model/schema';
+import {
+  useLoginUserMutation,
+  useRegisterUserMutation,
+} from '@/entities/user/api/mutations';
 
 export const RegisterForm = () => {
-  const { registerMutation, loginMutation } = useAuth();
+  const { mutateAsync: registerUser, isPending: isRegistering } =
+    useRegisterUserMutation();
+  const { mutateAsync: loginUser, isPending: isLoggingIn } =
+    useLoginUserMutation();
+
+  const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerFormSchema),
@@ -18,9 +27,26 @@ export const RegisterForm = () => {
   });
 
   const onSubmit = async (data: RegisterFormData) => {
-    await registerMutation.mutateAsync(data);
-    await loginMutation.mutateAsync(data);
+    try {
+      await registerUser({ body: data });
+
+      await loginUser({
+        body: { username: data.email, password: data.password },
+      });
+
+      navigate('/');
+    } catch (error: any) {
+      const serverMessage =
+        error?.response?.data?.message || 'Произошла ошибка при регистрации';
+
+      setError('root.serverError', {
+        type: 'server',
+        message: serverMessage,
+      });
+    }
   };
+
+  const isLoading = isSubmitting || isRegistering || isLoggingIn;
 
   return (
     <div className="min-h-screen flex items-center justify-center">
@@ -31,20 +57,22 @@ export const RegisterForm = () => {
             className="flex flex-col items-center space-y-4"
             onSubmit={handleSubmit(onSubmit)}
           >
-            {errors.root && (
+            {errors.root?.serverError && (
               <div
                 role="alert"
                 className="alert alert-error alert-outline w-full max-w-xs"
               >
-                <span>{errors.root.message}</span>
+                <span>{errors.root.serverError.message}</span>
               </div>
             )}
+
             <FormInput
               label="Почта"
               type="email"
               placeholder="Введите почту"
               errorText={errors.email?.message}
               registration={register('email')}
+              disabled={isLoading} // Блокируем инпуты во время отправки
             />
             <FormInput
               label="Пароль"
@@ -52,6 +80,7 @@ export const RegisterForm = () => {
               placeholder="Введите пароль"
               errorText={errors.password?.message}
               registration={register('password')}
+              disabled={isLoading}
             />
             <FormInput
               label="Повторите пароль"
@@ -59,14 +88,22 @@ export const RegisterForm = () => {
               placeholder="Повторите пароль"
               errorText={errors.repeat_password?.message}
               registration={register('repeat_password')}
+              disabled={isLoading}
             />
+
             <div className="form-control mt-6 w-full max-w-xs">
               <button
                 type="submit"
                 className="btn btn-primary w-full"
-                disabled={isSubmitting}
+                disabled={isLoading}
               >
-                Зарегистрироваться
+                {isLoading ? (
+                  <span className="loading loading-spinner">
+                    Регистрация...
+                  </span>
+                ) : (
+                  'Зарегистрироваться'
+                )}
               </button>
             </div>
           </form>

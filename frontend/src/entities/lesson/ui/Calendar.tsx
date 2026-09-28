@@ -1,9 +1,9 @@
 import * as calendar from '../model/calendar';
 import useAppSearchParams from '@/shared/hooks/useAppSearchParams';
 import { useEffect } from 'react';
-import { Button } from '@/components/generic/Button';
 import { useCalendar } from '@/context/CalendarProvider';
 import { monthNames, weekDayNames } from '../model/consts';
+import { Button } from '@/shared/ui/generic';
 
 export const Calendar = () => {
   const {

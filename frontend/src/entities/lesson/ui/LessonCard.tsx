@@ -1,12 +1,12 @@
-import { LessonByQuery } from '../api/service';
 import { MdOutlineRoom } from 'react-icons/md';
 import { SlGraduation } from 'react-icons/sl';
 import { GrGroup } from 'react-icons/gr';
-
-import { Badge } from '@/components/generic/Badge';
+import { LessonById } from '@/client';
+import { Badge } from '@/shared/ui/generic';
+import { formatTeacherInitials } from '@/entities/teacher';
 
 interface LessonCardProps {
-  lesson: LessonByQuery;
+  lesson: LessonById;
 }
 
 export const LessonCard = ({ lesson }: LessonCardProps) => {
@@ -28,11 +28,11 @@ export const LessonCard = ({ lesson }: LessonCardProps) => {
         <div className="flex items-center gap-2">
           <SlGraduation />
           <p>
-            {lesson.teacher.last_name}{' '}
-            {lesson.teacher.first_name[0].toUpperCase()}.{' '}
-            {lesson.teacher.middle_name
-              ? `${lesson.teacher.middle_name[0]?.toUpperCase()}.`
-              : ''}
+            {formatTeacherInitials(
+              lesson.teacher.firstName,
+              lesson.teacher.lastName,
+              lesson.teacher.middleName,
+            )}
           </p>
         </div>
       </div>

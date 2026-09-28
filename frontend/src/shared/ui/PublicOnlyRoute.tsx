@@ -1,5 +1,4 @@
 import { Navigate, Outlet } from 'react-router';
-import { isLoggedIn } from '../hooks/useAuth';
 import React from 'react';
 
 export const PublicOnlyRoute = ({
@@ -7,7 +6,11 @@ export const PublicOnlyRoute = ({
 }: {
   children: React.ReactNode;
 }) => {
-  if (isLoggedIn()) {
+  const isLoggenIn = () => {
+    return localStorage.getItem('accessToken') !== null;
+  };
+
+  if (isLoggenIn()) {
     return <Navigate to="/" replace />;
   }
 

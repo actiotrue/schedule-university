@@ -1,12 +1,12 @@
 import { useForm } from 'react-hook-form';
-import { LoginFormData, loginFormSchema } from '../api/auth-user';
+import { LoginFormData, loginFormSchema } from '../model/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FormInput } from '@/components/generic/FormInput';
-import useAuth from '@/shared/hooks/useAuth';
+import { FormInput } from '@/shared/ui/generic';
 import { Link } from 'react-router';
+import { useLoginUserMutation } from '@/entities/user';
 
 export const LoginForm = () => {
-  const { loginMutation } = useAuth();
+  const loginMutation = useLoginUserMutation();
 
   const {
     register,
@@ -20,7 +20,9 @@ export const LoginForm = () => {
   const onSubmit = async (data: LoginFormData) => {
     if (isSubmitting) return;
 
-    loginMutation.mutateAsync(data);
+    loginMutation.mutateAsync({
+      body: { username: data.email, password: data.password },
+    });
   };
 
   return (

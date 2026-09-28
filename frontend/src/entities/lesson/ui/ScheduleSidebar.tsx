@@ -1,4 +1,3 @@
-import { Button } from '@/components/generic/Button';
 import useAppSearchParams from '@/shared/hooks/useAppSearchParams';
 import { Calendar } from './Calendar';
 import { ScheduleType } from '../model/consts';
@@ -8,6 +7,7 @@ import { SearchGroup } from './SearchGroup';
 import { SearchTeacher } from './SearchTeacher';
 import { useQueryClient } from '@tanstack/react-query';
 import { useCalendar } from '@/context/CalendarProvider';
+import { Button } from '@/shared/ui/generic';
 
 export const ScheduleSidebar = () => {
   const queryClient = useQueryClient();

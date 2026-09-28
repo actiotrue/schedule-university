@@ -1,11 +1,11 @@
-import { useCalendar } from '@/context/CalendarProvider';
-import { useEffect } from 'react';
-import { ViewMode } from '@/types/view';
-import { ScheduleType } from '../model/consts';
-import { useLessons } from '../hooks/useLessons';
-import { Spinner } from '@/components/generic/Spinner';
-import { ScheduleViewList } from './ScheduleViewList';
-import { ScheduleViewTable } from './ScheduleViewTable';
+import { useCalendar } from "@/context/CalendarProvider";
+import { Spinner } from "@/shared/ui/generic";
+import { ViewMode } from "@/types/view";
+import { useEffect } from "react";
+import { useLessons } from "../hooks/useLessons";
+import { ScheduleType } from "../model/consts";
+import { ScheduleViewList } from "./ScheduleViewList";
+import { ScheduleViewTable } from "./ScheduleViewTable";
 
 interface ScheduleContainerProps {
   entityId: string;
@@ -25,7 +25,7 @@ export const ScheduleContainer = ({
   useEffect(() => {
     if (lessons) {
       const daysWithLessons = [
-        ...new Set(lessons.map((lesson) => lesson.day_of_week)),
+        ...new Set(lessons.map((lesson) => lesson.dayOfWeek)),
       ];
       setHasLessonsOnDays(daysWithLessons);
     } else if (!lessonsQuery.isLoading) {

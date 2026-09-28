@@ -1,15 +1,11 @@
-import { useState } from 'react';
-import { Combobox } from '@/components/generic/Combobox';
-import useAppSearchParams from '@/shared/hooks/useAppSearchParams';
-import { ScheduleType } from '../model/consts';
-import { List } from '@/components/generic/List';
-import { ListItem } from '@/components/generic/ListItem';
-import useDebounce from '@/shared/hooks/useDebounce';
-import { useSearchGroups } from '../api/search-groups';
-import { Spinner } from '@/components/generic/Spinner';
-import { useGroup } from '@/features/group/api/get-group';
-import { Badge } from '@/components/generic/Badge';
 import { useCalendar } from '@/context/CalendarProvider';
+import useAppSearchParams from '@/shared/hooks/useAppSearchParams';
+import useDebounce from '@/shared/hooks/useDebounce';
+import { Badge, Combobox, List, ListItem, Spinner } from '@/shared/ui/generic';
+import { useState } from 'react';
+import { ScheduleType } from '../model/consts';
+import { useGetGroupQuery } from '@/entities/group';
+import { useSearchGroupsQuery } from '@/entities/group/api/queries';
 
 export const SearchGroup = () => {
   const [inputValue, setInputValue] = useState<string>('');
@@ -19,18 +15,11 @@ export const SearchGroup = () => {
   const { resetToToday } = useCalendar();
   const { updateParams, getParam } = useAppSearchParams();
 
-  const groupId = getParam(ScheduleType.GROUP);
+  const selectedGroupQuery = useGetGroupQuery(getParam(ScheduleType.GROUP));
+  const selectedGroup = selectedGroupQuery.data;
 
-  const groupQuery = useGroup({
-    groupId: groupId!,
-    queryConfig: { enabled: !!groupId },
-  });
-
-  const groupsSearchQuery = useSearchGroups({
-    searchTerm: debouncedSearchTerm,
-    queryConfig: { enabled: !!debouncedSearchTerm },
-  });
-  const groups = groupsSearchQuery.data;
+  const groupsSearchQuery = useSearchGroupsQuery(debouncedSearchTerm);
+  const foundGoups = groupsSearchQuery.data;
 
   const handleGroupSelect = (groupId: string) => {
     setIsListOpen(false);
@@ -45,9 +34,7 @@ export const SearchGroup = () => {
 
   return (
     <div className="space-y-4">
-      {groupId && groupQuery.data && (
-        <Badge size="xl">{groupQuery.data.name}</Badge>
-      )}
+      {selectedGroup && <Badge size="xl">{selectedGroup.name}</Badge>}
       <Combobox
         inputValue={inputValue}
         setIsOpen={setIsListOpen}
@@ -56,9 +43,9 @@ export const SearchGroup = () => {
           setInputValue(e.target.value);
         }}
       >
-        {isListOpen && (groups?.length ?? 0) > 0 && (
+        {isListOpen && (foundGoups?.length ?? 0) > 0 && (
           <List>
-            {groups?.map((group) => (
+            {foundGoups?.map((group) => (
               <ListItem
                 key={group.id}
                 onClick={() => handleGroupSelect(group.id)}
@@ -73,11 +60,13 @@ export const SearchGroup = () => {
             <Spinner />
           </List>
         )}
-        {isListOpen && !groupsSearchQuery.isLoading && groups?.length === 0 && (
-          <List>
-            <div className="p-3 text-center">Ничего не найдена</div>
-          </List>
-        )}
+        {isListOpen &&
+          !groupsSearchQuery.isLoading &&
+          foundGoups?.length === 0 && (
+            <List>
+              <div className="p-3 text-center">Ничего не найдена</div>
+            </List>
+          )}
       </Combobox>
     </div>
   );

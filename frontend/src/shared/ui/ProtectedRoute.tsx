@@ -1,4 +1,4 @@
-import useAuth, { isLoggedIn } from '@/shared/hooks/useAuth';
+import { useGetCurrentUser } from '@/entities/user';
 import { RoleName } from '@/types';
 import { Navigate } from 'react-router';
 
@@ -11,8 +11,12 @@ export const ProtectedRoute = ({
   children,
   requiredRole = 'user',
 }: ProtectedRouteProps) => {
-  const { user, isLoading } = useAuth();
+  const { data: user, isLoading } = useGetCurrentUser()
 
+  const isLoggenIn = () => {
+    return localStorage.getItem('accessToken') !== null;
+  };
+  
   if (isLoading) return <div>Проверка авторизации...</div>;
 
   if (!isLoggedIn || user?.role !== requiredRole)
