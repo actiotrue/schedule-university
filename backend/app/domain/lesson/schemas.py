@@ -6,9 +6,9 @@ from app.domain.group.schemas import GroupRead
 from app.domain.room.schemas import RoomReadMinimal
 from app.domain.subject.schemas import SubjectRead
 from app.domain.teacher.schemas import TeacherRead
+from app.core.base_schema import BaseSchema
 
-
-class LessonBase(BaseModel):
+class LessonBase(BaseSchema):
     time_id: int
     day_of_week: int
     type: str
@@ -52,7 +52,7 @@ class LessonUpdate(LessonBase):
     group_id: int
 
 
-class LessonById(BaseModel):
+class LessonById(BaseSchema):
     id: int
     time_id: int
     day_of_week: int

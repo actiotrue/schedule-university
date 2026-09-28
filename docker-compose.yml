@@ -66,7 +66,7 @@ services:
         environment:
             - TELEGRAM_API_TOKEN=${TELEGRAM_API_TOKEN}
             - ADMIN_ID=${ADMIN_ID}
-            - BACKEND_API_URL=http://backend:8000/api/v1
+            - VITE_API_URL=http://backend:8000/api/v1
             - RABBITMQ_URL=amqp://${RABBITMQ_USER}:${RABBITMQ_PASSWORD}@rabbitmq:5672/ 
             - DATABASE_URL=${DATABASE_URL}
         develop:

@@ -1,9 +1,8 @@
 from datetime import datetime
 
-from pydantic import BaseModel
+from app.core.base_schema import BaseSchema
 
-
-class GroupBase(BaseModel):
+class GroupBase(BaseSchema):
     name: str
     course: int
     institute: str

@@ -1,5 +1,5 @@
-import { CreateSubject } from '@/features/subject/components/CreateSubject';
-import { SubjectsList } from '@/features/subject/components/SubjectsList';
+import { CreateSubject } from '@/features/manage-subject/ui/CreateSubject';
+import { SubjectsList } from '@/entities/subject/ui/SubjectsList';
 
 const SubjectPage = () => {
   return (

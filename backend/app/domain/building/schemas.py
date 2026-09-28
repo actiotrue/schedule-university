@@ -1,9 +1,9 @@
 from datetime import datetime
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import ConfigDict
+from app.core.base_schema import BaseSchema
 
-
-class BuildingBase(BaseModel):
+class BuildingBase(BaseSchema):
     name: str
     address: str
 
