@@ -1,6 +1,5 @@
-import { useDeleteLessonMutation } from "@/entities/lesson/api/mutations";
-import { Button } from "@/shared/ui/generic";
-
+import { useDeleteLessonMutation } from '@/entities/lesson/api/mutations';
+import { Button } from '@/shared/ui/generic';
 
 interface DeleteLessonProps {
   lessonId: number;
@@ -12,7 +11,10 @@ export const DeleteLesson = ({ lessonId, onSuccess }: DeleteLessonProps) => {
 
   const handleDelete = () => {
     if (confirm('Удалить пару?')) {
-      deleteLessonMutation.mutate({path:{lesson_id:lessonId}},{onSuccess:onSuccess});
+      deleteLessonMutation.mutate(
+        { path: { lesson_id: lessonId } },
+        { onSuccess: onSuccess },
+      );
     }
   };
 

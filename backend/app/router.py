@@ -8,6 +8,8 @@ from app.domain.room.routes import router as room_router
 from app.domain.student.routes import router as student_router
 from app.domain.subject.routes import router as subject_router
 from app.domain.teacher.routes import router as teacher_router
+from app.domain.department.routes import router as department_router
+from app.domain.division.routes import router as division_router
 from app.core.utils import router as utils_router
 
 
@@ -21,4 +23,6 @@ api_router.include_router(room_router)
 api_router.include_router(student_router)
 api_router.include_router(subject_router)
 api_router.include_router(teacher_router)
+api_router.include_router(department_router)
+api_router.include_router(division_router)
 api_router.include_router(utils_router)

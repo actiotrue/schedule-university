@@ -16,7 +16,7 @@ interface AutocompleteProps<T extends AutocompleteOptions> {
   onInputChange: (value: string) => void;
   onSelect: (item: T) => void;
   placeholder?: string;
-  error?: string 
+  error?: string;
 }
 
 export const Autocomplete = <T extends AutocompleteOptions>({

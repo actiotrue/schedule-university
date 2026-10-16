@@ -1,11 +1,11 @@
-import { useCalendar } from "@/context/CalendarProvider";
-import { Spinner } from "@/shared/ui/generic";
-import { ViewMode } from "@/types/view";
-import { useEffect } from "react";
-import { useLessons } from "../hooks/useLessons";
-import { ScheduleType } from "../model/consts";
-import { ScheduleViewList } from "./ScheduleViewList";
-import { ScheduleViewTable } from "./ScheduleViewTable";
+import { useCalendar } from '@/context/CalendarProvider';
+import { Spinner } from '@/shared/ui/generic';
+import { ViewMode } from '@/types/view';
+import { useEffect } from 'react';
+import { useLessons } from '../hooks/useLessons';
+import { ScheduleType } from '../model/consts';
+import { ScheduleViewList } from './ScheduleViewList';
+import { ScheduleViewTable } from './ScheduleViewTable';
 
 interface ScheduleContainerProps {
   entityId: string;

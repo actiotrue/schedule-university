@@ -5,4 +5,4 @@ set -x
 
 alembic upgrade head
 
-python app/initial_data.py
+python app/migration/seed.py

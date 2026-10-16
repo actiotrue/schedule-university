@@ -9,4 +9,3 @@ export {
   useGetGroupsSummaryQuery,
 } from './api/queries';
 export { GroupsList } from './ui/GroupsList';
-export { INSTITUTIES } from './model/consts';

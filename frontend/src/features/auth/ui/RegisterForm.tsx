@@ -72,7 +72,7 @@ export const RegisterForm = () => {
               placeholder="Введите почту"
               errorText={errors.email?.message}
               registration={register('email')}
-              disabled={isLoading} // Блокируем инпуты во время отправки
+              disabled={isLoading}
             />
             <FormInput
               label="Пароль"

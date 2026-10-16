@@ -1,5 +1,5 @@
-import { TeachersList } from "@/entities/teacher";
-import { CreateTeacher } from "@/features/manage-teacher";
+import { TeachersList } from '@/entities/teacher';
+import { CreateTeacher } from '@/features/manage-teacher';
 
 export default function TeacherPage() {
   return (

@@ -1,13 +1,13 @@
-.PHONY: local dev create-migration migrate stop backend lint format type-check test-backend
+.PHONY: local dev create-migration migrate seed stop backend lint format type-check test-backend
 
 local:
 	docker compose up -d redis rabbitmq
 
 	@echo "Waiting for container with Redis..."
-	@until docker compose exec -T redis redis-cli ping | grep -q "PONG"; do sleep 0.5; done
+	@until docker compose exec -T redis redis-cli ping | grep -q "PONG"; do sleep 2; done
 
 	@echo "Waiting for container with RabbitMQ..."
-	@until docker compose exec -T rabbitmq rabbitmq-diagnostics -q check_running; do sleep 0.5; done
+	@until docker compose exec -T rabbitmq rabbitmq-diagnostics -q check_running; do sleep 2; done
 
 	@echo "All services are ready! Starting apps..."
 	cd frontend && npx concurrently \
@@ -18,10 +18,17 @@ dev:
 	docker compose up -d
 
 create-migration:
+	@if [ -z "$(DESCRIPTION)" ]; then \
+		echo "Error: define description of migration. Example: make create-migration DESCRIPTION='name_migration'"; \
+		exit 1; \
+	fi
 	cd backend && uv run alembic revision --autogenerate -m "$(DESCRIPTION)"
 
 migrate:
 	cd backend && uv run alembic upgrade head
+
+seed:
+	cd backend && uv run python -m app.migration.seed
 
 stop:
 	docker compose down
@@ -35,7 +42,7 @@ backend:
 	@echo "Waiting for container with RabbitMQ..."
 	@until docker compose exec -T rabbitmq rabbitmq-diagnostics -q check_running; do sleep 0.5; done
 
-	cd backend && uv run uvicorn app.main:app
+	cd backend && uv run uvicorn app.main:app --reload
 
 lint:
 	uvx ruff check .

@@ -6,7 +6,13 @@ import {
   DAYS_OF_WEAK,
   LESSON_TYPES,
 } from '@/entities/lesson/model/consts';
-import { Modal, Button, Create, FormSelect, Autocomplete } from '@/shared/ui/generic';
+import {
+  Modal,
+  Button,
+  Create,
+  FormSelect,
+  Autocomplete,
+} from '@/shared/ui/generic';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -29,21 +35,20 @@ export function CreateLesson() {
     setInputValues((prev) => ({ ...prev, [field]: value }));
   };
 
-  const teachersQuery = useGetTeachersQuery()
-  const teachersOptions = teachersQuery.data?.map((teacher)=>({
+  const teachersQuery = useGetTeachersQuery();
+  const teachersOptions = teachersQuery.data?.map((teacher) => ({
     id: teacher.id,
-    name: teacher.fullName
-  })) 
+    name: teacher.fullName,
+  }));
 
-  const roomsQuery = useGetRoomsQuery()
-  const rooms = roomsQuery.data
+  const roomsQuery = useGetRoomsQuery();
+  const rooms = roomsQuery.data;
 
-  const groupsQuery = useGetGroupsQuery()
-  const groups = groupsQuery.data
+  const groupsQuery = useGetGroupsQuery();
+  const groups = groupsQuery.data;
 
-  const subjectsQuery = useGetSubjectsQuery()
-  const subjects = subjectsQuery.data
-
+  const subjectsQuery = useGetSubjectsQuery();
+  const subjects = subjectsQuery.data;
 
   const resetForm = () => {
     reset();
@@ -74,8 +79,6 @@ export function CreateLesson() {
 
   const createLessonMutation = useCreateLessonMutation();
 
-
-  
   return (
     <Modal
       header="Добавить пару"
@@ -104,48 +107,51 @@ export function CreateLesson() {
         )}
         className="flex flex-col items-center justify-center space-y-4 w-full"
       >
-        <FormField label='Преподаватель' errorMessage={errors.teacherId?.message}>
-          <Autocomplete 
-          options={teachersOptions} 
-          isLoading={teachersQuery.isLoading}
-          inputValue={inputValues.teacher}
-          onInputChange={(value)=>handleInputChange('teacher',value)}
-          onSelect={(option)=>setValue('teacherId',option.id)}
-          placeholder='Введите ФИО преподавателя'
-          error={errors.teacherId?.message}
+        <FormField
+          label="Преподаватель"
+          errorMessage={errors.teacherId?.message}
+        >
+          <Autocomplete
+            options={teachersOptions}
+            isLoading={teachersQuery.isLoading}
+            inputValue={inputValues.teacher}
+            onInputChange={(value) => handleInputChange('teacher', value)}
+            onSelect={(option) => setValue('teacherId', option.id)}
+            placeholder="Введите ФИО преподавателя"
+            error={errors.teacherId?.message}
           />
         </FormField>
-        <FormField label='Аудитория' errorMessage={errors.roomId?.message}>
-          <Autocomplete 
-          options={rooms} 
-          isLoading={roomsQuery.isLoading}
-          inputValue={inputValues.room}
-          onInputChange={(value)=>handleInputChange('room',value)}
-          onSelect={(option)=>setValue('roomId',option.id)}
-          placeholder='Введите название аудитории'
-          error={errors.roomId?.message}
+        <FormField label="Аудитория" errorMessage={errors.roomId?.message}>
+          <Autocomplete
+            options={rooms}
+            isLoading={roomsQuery.isLoading}
+            inputValue={inputValues.room}
+            onInputChange={(value) => handleInputChange('room', value)}
+            onSelect={(option) => setValue('roomId', option.id)}
+            placeholder="Введите название аудитории"
+            error={errors.roomId?.message}
           />
         </FormField>
-        <FormField label='Группа' errorMessage={errors.groupId?.message}>
-          <Autocomplete 
-          options={groups} 
-          isLoading={groupsQuery.isLoading}
-          inputValue={inputValues.group}
-          onInputChange={(value)=>handleInputChange('group',value)}
-          onSelect={(option)=>setValue('groupId',option.id)}
-          placeholder='Введите название группы'
-          error={errors.teacherId?.message}
+        <FormField label="Группа" errorMessage={errors.groupId?.message}>
+          <Autocomplete
+            options={groups}
+            isLoading={groupsQuery.isLoading}
+            inputValue={inputValues.group}
+            onInputChange={(value) => handleInputChange('group', value)}
+            onSelect={(option) => setValue('groupId', option.id)}
+            placeholder="Введите название группы"
+            error={errors.teacherId?.message}
           />
         </FormField>
-        <FormField label='Предмет' errorMessage={errors.subjectId?.message}>
-          <Autocomplete 
-          options={subjects} 
-          isLoading={subjectsQuery.isLoading}
-          inputValue={inputValues.subject}
-          onInputChange={(value)=>handleInputChange('subject',value)}
-          onSelect={(option)=>setValue('subjectId',option.id)}
-          placeholder='Введите название предмета'
-          error={errors.subjectId?.message}
+        <FormField label="Предмет" errorMessage={errors.subjectId?.message}>
+          <Autocomplete
+            options={subjects}
+            isLoading={subjectsQuery.isLoading}
+            inputValue={inputValues.subject}
+            onInputChange={(value) => handleInputChange('subject', value)}
+            onSelect={(option) => setValue('subjectId', option.id)}
+            placeholder="Введите название предмета"
+            error={errors.subjectId?.message}
           />
         </FormField>
 

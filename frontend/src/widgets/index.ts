@@ -1,1 +1,1 @@
-export { UserAuthWidget} from './auth-widget/ui/UserAuthWidget'
+export { UserAuthWidget } from './auth-widget/ui/UserAuthWidget';

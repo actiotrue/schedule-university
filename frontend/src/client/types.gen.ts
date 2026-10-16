@@ -20,9 +20,9 @@ export type AuthResponse = {
 };
 
 /**
- * Body_login_user_api_v1_login__post
+ * Body_login_user
  */
-export type BodyLoginUserApiV1LoginPost = {
+export type BodyLoginUser = {
     /**
      * Grant Type
      */
@@ -104,6 +104,52 @@ export type BuildingUpdate = {
 };
 
 /**
+ * DepartmentCreate
+ */
+export type DepartmentCreate = {
+    /**
+     * Name
+     */
+    name: string;
+    /**
+     * Address
+     */
+    address: string;
+};
+
+/**
+ * DepartmentRead
+ */
+export type DepartmentRead = {
+    /**
+     * Name
+     */
+    name: string;
+    /**
+     * Address
+     */
+    address: string;
+    /**
+     * Id
+     */
+    id: number;
+};
+
+/**
+ * DepartmentUpdate
+ */
+export type DepartmentUpdate = {
+    /**
+     * Name
+     */
+    name: string;
+    /**
+     * Address
+     */
+    address: string;
+};
+
+/**
  * GroupCreate
  */
 export type GroupCreate = {
@@ -116,9 +162,9 @@ export type GroupCreate = {
      */
     course: number;
     /**
-     * Institute
+     * Departmentid
      */
-    institute: string;
+    departmentId: number;
 };
 
 /**
@@ -134,13 +180,14 @@ export type GroupRead = {
      */
     course: number;
     /**
-     * Institute
+     * Departmentid
      */
-    institute: string;
+    departmentId: number;
     /**
      * Id
      */
     id: number;
+    department: DepartmentRead;
     /**
      * Createdat
      */
@@ -164,13 +211,14 @@ export type GroupSummary = {
      */
     course: number;
     /**
-     * Institute
+     * Departmentid
      */
-    institute: string;
+    departmentId: number;
     /**
      * Id
      */
     id: number;
+    department: DepartmentRead;
     /**
      * Countstudents
      */
@@ -190,9 +238,9 @@ export type GroupUpdate = {
      */
     course: number;
     /**
-     * Institute
+     * Departmentid
      */
-    institute: string;
+    departmentId: number;
 };
 
 /**
@@ -896,7 +944,7 @@ export type DebugCookiesResponses = {
 };
 
 export type LoginUserData = {
-    body: BodyLoginUserApiV1LoginPost;
+    body: BodyLoginUser;
     path?: never;
     query?: never;
     url: '/api/v1/login/';
@@ -966,7 +1014,7 @@ export type GetAllUsersData = {
 
 export type GetAllUsersResponses = {
     /**
-     * Response Get All Users Api V1 Users  Get
+     * Response Get All Users
      *
      * Successful Response
      */
@@ -1016,7 +1064,7 @@ export type GetAllBuildingsData = {
 
 export type GetAllBuildingsResponses = {
     /**
-     * Response Get All Buildings Api V1 Building  Get
+     * Response Get All Buildings
      *
      * Successful Response
      */
@@ -1163,7 +1211,7 @@ export type SearchGroupsByNameError = SearchGroupsByNameErrors[keyof SearchGroup
 
 export type SearchGroupsByNameResponses = {
     /**
-     * Response Search Groups By Name Api V1 Group Search Get
+     * Response Search Groups By Name
      *
      * Successful Response
      */
@@ -1181,7 +1229,7 @@ export type GetGroupsSummaryData = {
 
 export type GetGroupsSummaryResponses = {
     /**
-     * Response Get Groups Summary Api V1 Group Summary  Get
+     * Response Get Groups Summary
      *
      * Successful Response
      */
@@ -1199,7 +1247,7 @@ export type GetAllGroupsData = {
 
 export type GetAllGroupsResponses = {
     /**
-     * Response Get All Groups Api V1 Group  Get
+     * Response Get All Groups
      *
      * Successful Response
      */
@@ -1354,7 +1402,7 @@ export type GetLessonsError = GetLessonsErrors[keyof GetLessonsErrors];
 
 export type GetLessonsResponses = {
     /**
-     * Response Get Lessons Api V1 Lesson  Get
+     * Response Get Lessons
      *
      * Successful Response
      */
@@ -1471,7 +1519,7 @@ export type SearchRoomsByNameError = SearchRoomsByNameErrors[keyof SearchRoomsBy
 
 export type SearchRoomsByNameResponses = {
     /**
-     * Response Search Rooms By Name Api V1 Room Search Get
+     * Response Search Rooms By Name
      *
      * Successful Response
      */
@@ -1489,7 +1537,7 @@ export type GetAllRoomsData = {
 
 export type GetAllRoomsResponses = {
     /**
-     * Response Get All Rooms Api V1 Room  Get
+     * Response Get All Rooms
      *
      * Successful Response
      */
@@ -1652,7 +1700,7 @@ export type GetAllStudentsData = {
 
 export type GetAllStudentsResponses = {
     /**
-     * Response Get All Students Api V1 Student  Get
+     * Response Get All Students
      *
      * Successful Response
      */
@@ -1769,7 +1817,7 @@ export type SearchSubjectByNameError = SearchSubjectByNameErrors[keyof SearchSub
 
 export type SearchSubjectByNameResponses = {
     /**
-     * Response Search Subject By Name Api V1 Subject Search Get
+     * Response Search Subject By Name
      *
      * Successful Response
      */
@@ -1787,7 +1835,7 @@ export type GetAllSubjectsData = {
 
 export type GetAllSubjectsResponses = {
     /**
-     * Response Get All Subjects Api V1 Subject  Get
+     * Response Get All Subjects
      *
      * Successful Response
      */
@@ -1934,7 +1982,7 @@ export type SearchTeachersByNameError = SearchTeachersByNameErrors[keyof SearchT
 
 export type SearchTeachersByNameResponses = {
     /**
-     * Response Search Teachers By Name Api V1 Teacher Search Get
+     * Response Search Teachers By Name
      *
      * Successful Response
      */
@@ -1952,7 +2000,7 @@ export type GetAllTeachersData = {
 
 export type GetAllTeachersResponses = {
     /**
-     * Response Get All Teachers Api V1 Teacher  Get
+     * Response Get All Teachers
      *
      * Successful Response
      */
@@ -2075,6 +2123,139 @@ export type UpdateTeacherResponses = {
 };
 
 export type UpdateTeacherResponse = UpdateTeacherResponses[keyof UpdateTeacherResponses];
+
+export type GetAllDepartmentsData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/v1/department/';
+};
+
+export type GetAllDepartmentsResponses = {
+    /**
+     * Response Get All Departments
+     *
+     * Successful Response
+     */
+    200: Array<DepartmentRead>;
+};
+
+export type GetAllDepartmentsResponse = GetAllDepartmentsResponses[keyof GetAllDepartmentsResponses];
+
+export type CreateDepartmentData = {
+    body: DepartmentCreate;
+    path?: never;
+    query?: never;
+    url: '/api/v1/department/';
+};
+
+export type CreateDepartmentErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type CreateDepartmentError = CreateDepartmentErrors[keyof CreateDepartmentErrors];
+
+export type CreateDepartmentResponses = {
+    /**
+     * Successful Response
+     */
+    200: DepartmentRead;
+};
+
+export type CreateDepartmentResponse = CreateDepartmentResponses[keyof CreateDepartmentResponses];
+
+export type DeleteDepartmentData = {
+    body?: never;
+    path: {
+        /**
+         * Department Id
+         */
+        department_id: number;
+    };
+    query?: never;
+    url: '/api/v1/department/{department_id}';
+};
+
+export type DeleteDepartmentErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type DeleteDepartmentError = DeleteDepartmentErrors[keyof DeleteDepartmentErrors];
+
+export type DeleteDepartmentResponses = {
+    /**
+     * Successful Response
+     */
+    204: void;
+};
+
+export type DeleteDepartmentResponse = DeleteDepartmentResponses[keyof DeleteDepartmentResponses];
+
+export type GetDepartmentByIdData = {
+    body?: never;
+    path: {
+        /**
+         * Department Id
+         */
+        department_id: number;
+    };
+    query?: never;
+    url: '/api/v1/department/{department_id}';
+};
+
+export type GetDepartmentByIdErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type GetDepartmentByIdError = GetDepartmentByIdErrors[keyof GetDepartmentByIdErrors];
+
+export type GetDepartmentByIdResponses = {
+    /**
+     * Successful Response
+     */
+    200: DepartmentRead;
+};
+
+export type GetDepartmentByIdResponse = GetDepartmentByIdResponses[keyof GetDepartmentByIdResponses];
+
+export type UpdateData = {
+    body: DepartmentUpdate;
+    path: {
+        /**
+         * Department Id
+         */
+        department_id: number;
+    };
+    query?: never;
+    url: '/api/v1/department/{department_id}';
+};
+
+export type UpdateErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type UpdateError = UpdateErrors[keyof UpdateErrors];
+
+export type UpdateResponses = {
+    /**
+     * Successful Response
+     */
+    200: DepartmentRead;
+};
+
+export type UpdateResponse = UpdateResponses[keyof UpdateResponses];
 
 export type HealthCheckData = {
     body?: never;

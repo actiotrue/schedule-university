@@ -1,19 +1,13 @@
 import { useGetCurrentUser, useLogoutUserMutation } from '@/entities/user';
 import { Link } from 'react-router';
+import {isLoggedIn} from '@/client/client.gen'
 
 export const UserAuthWidget = () => {
   const logoutMutation = useLogoutUserMutation();
   const { data: user, isLoading } = useGetCurrentUser();
 
   const handleLogout = () => {
-    logoutMutation.mutate(
-      {},
-      {
-        onSuccess: () => {
-          localStorage.removeItem('accessToken');
-        },
-      },
-    );
+    logoutMutation.mutate({});
   };
 
   if (isLoading) {
@@ -24,7 +18,7 @@ export const UserAuthWidget = () => {
     );
   }
 
-  if (user) {
+  if (user && isLoggedIn()) {
     return (
       <div className="dropdown dropdown-end">
         <div

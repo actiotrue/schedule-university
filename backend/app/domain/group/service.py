@@ -22,10 +22,9 @@ class GroupService:
         self.group_repo = GroupRepository(session)
         self.redis = redis
 
-    async def get_all(self) -> list[Group | None]:
-        cache_key = CacheKeys.GROUPS
-        cached_data = await self.redis.get_cached_data(cache_key, self.group_repo.get_all)
-        return cached_data
+    async def get_all(self) -> list[Group]:
+        groups = await self.group_repo.get_all()
+        return groups
 
     async def get_by_id(self, group_id: int) -> Group | None:
         group = await self.group_repo.get_one_or_none_by_id(id=group_id)

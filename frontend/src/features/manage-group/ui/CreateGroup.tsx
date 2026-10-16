@@ -1,4 +1,4 @@
-import { useCreateGroupMutation, INSTITUTIES } from '@/entities/group';
+import { useCreateGroupMutation } from '@/entities/group';
 import { COURSES } from '@/entities/group/model/consts';
 import {
   Modal,
@@ -6,11 +6,13 @@ import {
   Create,
   FormInput,
   FormSelect,
+  Spinner,
 } from '@/shared/ui/generic';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { CreateGroupForm, createGroupFormSchema } from '../model/schema';
+import { useGetDepartmentsQuery } from '@/entities/department/api/queries';
 
 export const CreateGroup = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -25,6 +27,9 @@ export const CreateGroup = () => {
   });
 
   const createGroupMutation = useCreateGroupMutation();
+
+  const { data: departments, isLoading: isDepartmentsLoading } =
+    useGetDepartmentsQuery();
 
   return (
     <Modal
@@ -83,18 +88,24 @@ export const CreateGroup = () => {
         </FormSelect>
         <FormSelect
           label="Институт"
-          registration={register('institute')}
-          errorText={errors.institute?.message}
+          registration={register('departmentId')}
+          errorText={errors.departmentId?.message}
           defaultValue=""
         >
-          <option value="" disabled>
-            Выберите институт
-          </option>
-          {INSTITUTIES.map((inst) => (
-            <option key={inst} value={inst}>
-              {inst}
-            </option>
-          ))}
+          {isDepartmentsLoading ? (
+            <option value="" disabled>Загрузка институтов...</option>
+          ) : (
+            <>
+              <option value="" disabled>
+                Выберите институт
+              </option>
+              {departments?.map((department) => (
+                <option key={department.id} value={department.id}>
+                  {department.name}
+                </option>
+              ))}
+            </>
+          )}
         </FormSelect>
         <Button
           type="submit"

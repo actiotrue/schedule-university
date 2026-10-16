@@ -4,8 +4,8 @@ import { type DefaultError, queryOptions, type UseMutationOptions } from '@tanst
 import type { AxiosError } from 'axios';
 
 import { client } from '../client.gen';
-import { changePassword, checkAuth, createBuilding, createGroup, createLesson, createRoom, createStudent, createSubject, createTeacher, debugCookies, deleteBuilding, deleteGroup, deleteLesson, deleteRoom, deleteStudent, deleteSubject, deleteTeacher, getAllBuildings, getAllGroups, getAllRooms, getAllStudents, getAllSubjects, getAllTeachers, getAllUsers, getBuildingById, getGroupById, getGroupsSummary, getLessons, getRoomById, getStudentById, getSubjectById, getTeacherById, healthCheck, loginUser, logoutUser, type Options, processRefreshToken, registerUser, searchGroupsByName, searchRoomsByName, searchSubjectByName, searchTeachersByName, updateBuilding, updateGroup, updateLesson, updateRoom, updateStudent, updateSubject, updateTeacher } from '../sdk.gen';
-import type { ChangePasswordData, ChangePasswordError, CheckAuthData, CheckAuthResponse, CreateBuildingData, CreateBuildingError, CreateBuildingResponse, CreateGroupData, CreateGroupError, CreateGroupResponse, CreateLessonData, CreateLessonError, CreateLessonResponse, CreateRoomData, CreateRoomError, CreateRoomResponse, CreateStudentData, CreateStudentError, CreateStudentResponse, CreateSubjectData, CreateSubjectError, CreateSubjectResponse, CreateTeacherData, CreateTeacherError, CreateTeacherResponse, DebugCookiesData, DeleteBuildingData, DeleteBuildingError, DeleteBuildingResponse, DeleteGroupData, DeleteGroupError, DeleteGroupResponse, DeleteLessonData, DeleteLessonError, DeleteLessonResponse, DeleteRoomData, DeleteRoomError, DeleteRoomResponse, DeleteStudentData, DeleteStudentError, DeleteStudentResponse, DeleteSubjectData, DeleteSubjectError, DeleteSubjectResponse, DeleteTeacherData, DeleteTeacherError, DeleteTeacherResponse, GetAllBuildingsData, GetAllBuildingsResponse, GetAllGroupsData, GetAllGroupsResponse, GetAllRoomsData, GetAllRoomsResponse, GetAllStudentsData, GetAllStudentsResponse, GetAllSubjectsData, GetAllSubjectsResponse, GetAllTeachersData, GetAllTeachersResponse, GetAllUsersData, GetAllUsersResponse, GetBuildingByIdData, GetBuildingByIdError, GetBuildingByIdResponse, GetGroupByIdData, GetGroupByIdError, GetGroupByIdResponse, GetGroupsSummaryData, GetGroupsSummaryResponse, GetLessonsData, GetLessonsError, GetLessonsResponse, GetRoomByIdData, GetRoomByIdError, GetRoomByIdResponse, GetStudentByIdData, GetStudentByIdError, GetStudentByIdResponse, GetSubjectByIdData, GetSubjectByIdError, GetSubjectByIdResponse, GetTeacherByIdData, GetTeacherByIdError, GetTeacherByIdResponse, HealthCheckData, LoginUserData, LoginUserError, LoginUserResponse, LogoutUserData, ProcessRefreshTokenData, ProcessRefreshTokenResponse, RegisterUserData, RegisterUserError, RegisterUserResponse, SearchGroupsByNameData, SearchGroupsByNameError, SearchGroupsByNameResponse, SearchRoomsByNameData, SearchRoomsByNameError, SearchRoomsByNameResponse, SearchSubjectByNameData, SearchSubjectByNameError, SearchSubjectByNameResponse, SearchTeachersByNameData, SearchTeachersByNameError, SearchTeachersByNameResponse, UpdateBuildingData, UpdateBuildingError, UpdateBuildingResponse, UpdateGroupData, UpdateGroupError, UpdateGroupResponse, UpdateLessonData, UpdateLessonError, UpdateLessonResponse, UpdateRoomData, UpdateRoomError, UpdateRoomResponse, UpdateStudentData, UpdateStudentError, UpdateStudentResponse, UpdateSubjectData, UpdateSubjectError, UpdateSubjectResponse, UpdateTeacherData, UpdateTeacherError, UpdateTeacherResponse } from '../types.gen';
+import { changePassword, checkAuth, createBuilding, createDepartment, createGroup, createLesson, createRoom, createStudent, createSubject, createTeacher, debugCookies, deleteBuilding, deleteDepartment, deleteGroup, deleteLesson, deleteRoom, deleteStudent, deleteSubject, deleteTeacher, getAllBuildings, getAllDepartments, getAllGroups, getAllRooms, getAllStudents, getAllSubjects, getAllTeachers, getAllUsers, getBuildingById, getDepartmentById, getGroupById, getGroupsSummary, getLessons, getRoomById, getStudentById, getSubjectById, getTeacherById, healthCheck, loginUser, logoutUser, type Options, processRefreshToken, registerUser, searchGroupsByName, searchRoomsByName, searchSubjectByName, searchTeachersByName, update, updateBuilding, updateGroup, updateLesson, updateRoom, updateStudent, updateSubject, updateTeacher } from '../sdk.gen';
+import type { ChangePasswordData, ChangePasswordError, CheckAuthData, CheckAuthResponse, CreateBuildingData, CreateBuildingError, CreateBuildingResponse, CreateDepartmentData, CreateDepartmentError, CreateDepartmentResponse, CreateGroupData, CreateGroupError, CreateGroupResponse, CreateLessonData, CreateLessonError, CreateLessonResponse, CreateRoomData, CreateRoomError, CreateRoomResponse, CreateStudentData, CreateStudentError, CreateStudentResponse, CreateSubjectData, CreateSubjectError, CreateSubjectResponse, CreateTeacherData, CreateTeacherError, CreateTeacherResponse, DebugCookiesData, DeleteBuildingData, DeleteBuildingError, DeleteBuildingResponse, DeleteDepartmentData, DeleteDepartmentError, DeleteDepartmentResponse, DeleteGroupData, DeleteGroupError, DeleteGroupResponse, DeleteLessonData, DeleteLessonError, DeleteLessonResponse, DeleteRoomData, DeleteRoomError, DeleteRoomResponse, DeleteStudentData, DeleteStudentError, DeleteStudentResponse, DeleteSubjectData, DeleteSubjectError, DeleteSubjectResponse, DeleteTeacherData, DeleteTeacherError, DeleteTeacherResponse, GetAllBuildingsData, GetAllBuildingsResponse, GetAllDepartmentsData, GetAllDepartmentsResponse, GetAllGroupsData, GetAllGroupsResponse, GetAllRoomsData, GetAllRoomsResponse, GetAllStudentsData, GetAllStudentsResponse, GetAllSubjectsData, GetAllSubjectsResponse, GetAllTeachersData, GetAllTeachersResponse, GetAllUsersData, GetAllUsersResponse, GetBuildingByIdData, GetBuildingByIdError, GetBuildingByIdResponse, GetDepartmentByIdData, GetDepartmentByIdError, GetDepartmentByIdResponse, GetGroupByIdData, GetGroupByIdError, GetGroupByIdResponse, GetGroupsSummaryData, GetGroupsSummaryResponse, GetLessonsData, GetLessonsError, GetLessonsResponse, GetRoomByIdData, GetRoomByIdError, GetRoomByIdResponse, GetStudentByIdData, GetStudentByIdError, GetStudentByIdResponse, GetSubjectByIdData, GetSubjectByIdError, GetSubjectByIdResponse, GetTeacherByIdData, GetTeacherByIdError, GetTeacherByIdResponse, HealthCheckData, LoginUserData, LoginUserError, LoginUserResponse, LogoutUserData, ProcessRefreshTokenData, ProcessRefreshTokenResponse, RegisterUserData, RegisterUserError, RegisterUserResponse, SearchGroupsByNameData, SearchGroupsByNameError, SearchGroupsByNameResponse, SearchRoomsByNameData, SearchRoomsByNameError, SearchRoomsByNameResponse, SearchSubjectByNameData, SearchSubjectByNameError, SearchSubjectByNameResponse, SearchTeachersByNameData, SearchTeachersByNameError, SearchTeachersByNameResponse, UpdateBuildingData, UpdateBuildingError, UpdateBuildingResponse, UpdateData, UpdateError, UpdateGroupData, UpdateGroupError, UpdateGroupResponse, UpdateLessonData, UpdateLessonError, UpdateLessonResponse, UpdateResponse, UpdateRoomData, UpdateRoomError, UpdateRoomResponse, UpdateStudentData, UpdateStudentError, UpdateStudentResponse, UpdateSubjectData, UpdateSubjectError, UpdateSubjectResponse, UpdateTeacherData, UpdateTeacherError, UpdateTeacherResponse } from '../types.gen';
 
 /**
  * Register User
@@ -850,6 +850,93 @@ export const updateTeacherMutation = (options?: Partial<Options<UpdateTeacherDat
     const mutationOptions: UseMutationOptions<UpdateTeacherResponse, AxiosError<UpdateTeacherError>, Options<UpdateTeacherData>> = {
         mutationFn: async (fnOptions) => {
             const { data } = await updateTeacher({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+export const getAllDepartmentsQueryKey = (options?: Options<GetAllDepartmentsData>) => createQueryKey('getAllDepartments', options, false, ['Department']);
+
+/**
+ * Get All Departments
+ */
+export const getAllDepartmentsOptions = (options?: Options<GetAllDepartmentsData>) => queryOptions<GetAllDepartmentsResponse, AxiosError<DefaultError>, GetAllDepartmentsResponse, ReturnType<typeof getAllDepartmentsQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getAllDepartments({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getAllDepartmentsQueryKey(options)
+});
+
+/**
+ * Create Department
+ */
+export const createDepartmentMutation = (options?: Partial<Options<CreateDepartmentData>>): UseMutationOptions<CreateDepartmentResponse, AxiosError<CreateDepartmentError>, Options<CreateDepartmentData>> => {
+    const mutationOptions: UseMutationOptions<CreateDepartmentResponse, AxiosError<CreateDepartmentError>, Options<CreateDepartmentData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await createDepartment({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Delete Department
+ */
+export const deleteDepartmentMutation = (options?: Partial<Options<DeleteDepartmentData>>): UseMutationOptions<DeleteDepartmentResponse, AxiosError<DeleteDepartmentError>, Options<DeleteDepartmentData>> => {
+    const mutationOptions: UseMutationOptions<DeleteDepartmentResponse, AxiosError<DeleteDepartmentError>, Options<DeleteDepartmentData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await deleteDepartment({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+export const getDepartmentByIdQueryKey = (options: Options<GetDepartmentByIdData>) => createQueryKey('getDepartmentById', options, false, ['Department']);
+
+/**
+ * Get Department By Id
+ */
+export const getDepartmentByIdOptions = (options: Options<GetDepartmentByIdData>) => queryOptions<GetDepartmentByIdResponse, AxiosError<GetDepartmentByIdError>, GetDepartmentByIdResponse, ReturnType<typeof getDepartmentByIdQueryKey>>({
+    queryFn: async ({ queryKey, signal }) => {
+        const { data } = await getDepartmentById({
+            ...options,
+            ...queryKey[0],
+            signal,
+            throwOnError: true
+        });
+        return data;
+    },
+    queryKey: getDepartmentByIdQueryKey(options)
+});
+
+/**
+ * Update
+ */
+export const updateMutation = (options?: Partial<Options<UpdateData>>): UseMutationOptions<UpdateResponse, AxiosError<UpdateError>, Options<UpdateData>> => {
+    const mutationOptions: UseMutationOptions<UpdateResponse, AxiosError<UpdateError>, Options<UpdateData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await update({
                 ...options,
                 ...fnOptions,
                 throwOnError: true

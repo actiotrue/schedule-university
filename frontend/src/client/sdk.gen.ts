@@ -2,7 +2,7 @@
 
 import { type Client, type Options as Options2, type TDataShape, urlSearchParamsBodySerializer } from './client';
 import { client } from './client.gen';
-import type { ChangePasswordData, ChangePasswordErrors, ChangePasswordResponses, CheckAuthData, CheckAuthResponses, CreateBuildingData, CreateBuildingErrors, CreateBuildingResponses, CreateGroupData, CreateGroupErrors, CreateGroupResponses, CreateLessonData, CreateLessonErrors, CreateLessonResponses, CreateRoomData, CreateRoomErrors, CreateRoomResponses, CreateStudentData, CreateStudentErrors, CreateStudentResponses, CreateSubjectData, CreateSubjectErrors, CreateSubjectResponses, CreateTeacherData, CreateTeacherErrors, CreateTeacherResponses, DebugCookiesData, DebugCookiesResponses, DeleteBuildingData, DeleteBuildingErrors, DeleteBuildingResponses, DeleteGroupData, DeleteGroupErrors, DeleteGroupResponses, DeleteLessonData, DeleteLessonErrors, DeleteLessonResponses, DeleteRoomData, DeleteRoomErrors, DeleteRoomResponses, DeleteStudentData, DeleteStudentErrors, DeleteStudentResponses, DeleteSubjectData, DeleteSubjectErrors, DeleteSubjectResponses, DeleteTeacherData, DeleteTeacherErrors, DeleteTeacherResponses, GetAllBuildingsData, GetAllBuildingsResponses, GetAllGroupsData, GetAllGroupsResponses, GetAllRoomsData, GetAllRoomsResponses, GetAllStudentsData, GetAllStudentsResponses, GetAllSubjectsData, GetAllSubjectsResponses, GetAllTeachersData, GetAllTeachersResponses, GetAllUsersData, GetAllUsersResponses, GetBuildingByIdData, GetBuildingByIdErrors, GetBuildingByIdResponses, GetGroupByIdData, GetGroupByIdErrors, GetGroupByIdResponses, GetGroupsSummaryData, GetGroupsSummaryResponses, GetLessonsData, GetLessonsErrors, GetLessonsResponses, GetRoomByIdData, GetRoomByIdErrors, GetRoomByIdResponses, GetStudentByIdData, GetStudentByIdErrors, GetStudentByIdResponses, GetSubjectByIdData, GetSubjectByIdErrors, GetSubjectByIdResponses, GetTeacherByIdData, GetTeacherByIdErrors, GetTeacherByIdResponses, HealthCheckData, HealthCheckResponses, LoginUserData, LoginUserErrors, LoginUserResponses, LogoutUserData, LogoutUserResponses, ProcessRefreshTokenData, ProcessRefreshTokenResponses, RegisterUserData, RegisterUserErrors, RegisterUserResponses, SearchGroupsByNameData, SearchGroupsByNameErrors, SearchGroupsByNameResponses, SearchRoomsByNameData, SearchRoomsByNameErrors, SearchRoomsByNameResponses, SearchSubjectByNameData, SearchSubjectByNameErrors, SearchSubjectByNameResponses, SearchTeachersByNameData, SearchTeachersByNameErrors, SearchTeachersByNameResponses, UpdateBuildingData, UpdateBuildingErrors, UpdateBuildingResponses, UpdateGroupData, UpdateGroupErrors, UpdateGroupResponses, UpdateLessonData, UpdateLessonErrors, UpdateLessonResponses, UpdateRoomData, UpdateRoomErrors, UpdateRoomResponses, UpdateStudentData, UpdateStudentErrors, UpdateStudentResponses, UpdateSubjectData, UpdateSubjectErrors, UpdateSubjectResponses, UpdateTeacherData, UpdateTeacherErrors, UpdateTeacherResponses } from './types.gen';
+import type { ChangePasswordData, ChangePasswordErrors, ChangePasswordResponses, CheckAuthData, CheckAuthResponses, CreateBuildingData, CreateBuildingErrors, CreateBuildingResponses, CreateDepartmentData, CreateDepartmentErrors, CreateDepartmentResponses, CreateGroupData, CreateGroupErrors, CreateGroupResponses, CreateLessonData, CreateLessonErrors, CreateLessonResponses, CreateRoomData, CreateRoomErrors, CreateRoomResponses, CreateStudentData, CreateStudentErrors, CreateStudentResponses, CreateSubjectData, CreateSubjectErrors, CreateSubjectResponses, CreateTeacherData, CreateTeacherErrors, CreateTeacherResponses, DebugCookiesData, DebugCookiesResponses, DeleteBuildingData, DeleteBuildingErrors, DeleteBuildingResponses, DeleteDepartmentData, DeleteDepartmentErrors, DeleteDepartmentResponses, DeleteGroupData, DeleteGroupErrors, DeleteGroupResponses, DeleteLessonData, DeleteLessonErrors, DeleteLessonResponses, DeleteRoomData, DeleteRoomErrors, DeleteRoomResponses, DeleteStudentData, DeleteStudentErrors, DeleteStudentResponses, DeleteSubjectData, DeleteSubjectErrors, DeleteSubjectResponses, DeleteTeacherData, DeleteTeacherErrors, DeleteTeacherResponses, GetAllBuildingsData, GetAllBuildingsResponses, GetAllDepartmentsData, GetAllDepartmentsResponses, GetAllGroupsData, GetAllGroupsResponses, GetAllRoomsData, GetAllRoomsResponses, GetAllStudentsData, GetAllStudentsResponses, GetAllSubjectsData, GetAllSubjectsResponses, GetAllTeachersData, GetAllTeachersResponses, GetAllUsersData, GetAllUsersResponses, GetBuildingByIdData, GetBuildingByIdErrors, GetBuildingByIdResponses, GetDepartmentByIdData, GetDepartmentByIdErrors, GetDepartmentByIdResponses, GetGroupByIdData, GetGroupByIdErrors, GetGroupByIdResponses, GetGroupsSummaryData, GetGroupsSummaryResponses, GetLessonsData, GetLessonsErrors, GetLessonsResponses, GetRoomByIdData, GetRoomByIdErrors, GetRoomByIdResponses, GetStudentByIdData, GetStudentByIdErrors, GetStudentByIdResponses, GetSubjectByIdData, GetSubjectByIdErrors, GetSubjectByIdResponses, GetTeacherByIdData, GetTeacherByIdErrors, GetTeacherByIdResponses, HealthCheckData, HealthCheckResponses, LoginUserData, LoginUserErrors, LoginUserResponses, LogoutUserData, LogoutUserResponses, ProcessRefreshTokenData, ProcessRefreshTokenResponses, RegisterUserData, RegisterUserErrors, RegisterUserResponses, SearchGroupsByNameData, SearchGroupsByNameErrors, SearchGroupsByNameResponses, SearchRoomsByNameData, SearchRoomsByNameErrors, SearchRoomsByNameResponses, SearchSubjectByNameData, SearchSubjectByNameErrors, SearchSubjectByNameResponses, SearchTeachersByNameData, SearchTeachersByNameErrors, SearchTeachersByNameResponses, UpdateBuildingData, UpdateBuildingErrors, UpdateBuildingResponses, UpdateData, UpdateErrors, UpdateGroupData, UpdateGroupErrors, UpdateGroupResponses, UpdateLessonData, UpdateLessonErrors, UpdateLessonResponses, UpdateResponses, UpdateRoomData, UpdateRoomErrors, UpdateRoomResponses, UpdateStudentData, UpdateStudentErrors, UpdateStudentResponses, UpdateSubjectData, UpdateSubjectErrors, UpdateSubjectResponses, UpdateTeacherData, UpdateTeacherErrors, UpdateTeacherResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean, TResponse = unknown> = Options2<TData, ThrowOnError, TResponse> & {
     /**
@@ -477,6 +477,55 @@ export const getTeacherById = <ThrowOnError extends boolean = false>(options: Op
 export const updateTeacher = <ThrowOnError extends boolean = false>(options: Options<UpdateTeacherData, ThrowOnError>) => (options.client ?? client).put<UpdateTeacherResponses, UpdateTeacherErrors, ThrowOnError>({
     responseType: 'json',
     url: '/api/v1/teacher/{teacher_id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Get All Departments
+ */
+export const getAllDepartments = <ThrowOnError extends boolean = false>(options?: Options<GetAllDepartmentsData, ThrowOnError>) => (options?.client ?? client).get<GetAllDepartmentsResponses, unknown, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/department/',
+    ...options
+});
+
+/**
+ * Create Department
+ */
+export const createDepartment = <ThrowOnError extends boolean = false>(options: Options<CreateDepartmentData, ThrowOnError>) => (options.client ?? client).post<CreateDepartmentResponses, CreateDepartmentErrors, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/department/',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Delete Department
+ */
+export const deleteDepartment = <ThrowOnError extends boolean = false>(options: Options<DeleteDepartmentData, ThrowOnError>) => (options.client ?? client).delete<DeleteDepartmentResponses, DeleteDepartmentErrors, ThrowOnError>({ url: '/api/v1/department/{department_id}', ...options });
+
+/**
+ * Get Department By Id
+ */
+export const getDepartmentById = <ThrowOnError extends boolean = false>(options: Options<GetDepartmentByIdData, ThrowOnError>) => (options.client ?? client).get<GetDepartmentByIdResponses, GetDepartmentByIdErrors, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/department/{department_id}',
+    ...options
+});
+
+/**
+ * Update
+ */
+export const update = <ThrowOnError extends boolean = false>(options: Options<UpdateData, ThrowOnError>) => (options.client ?? client).put<UpdateResponses, UpdateErrors, ThrowOnError>({
+    responseType: 'json',
+    url: '/api/v1/department/{department_id}',
     ...options,
     headers: {
         'Content-Type': 'application/json',

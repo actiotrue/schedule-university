@@ -1,6 +1,7 @@
 import { useGetCurrentUser } from '@/entities/user';
 import { RoleName } from '@/types';
 import { Navigate } from 'react-router';
+import {isLoggedIn} from '@/client/client.gen'
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -11,15 +12,11 @@ export const ProtectedRoute = ({
   children,
   requiredRole = 'user',
 }: ProtectedRouteProps) => {
-  const { data: user, isLoading } = useGetCurrentUser()
+  const { data: user, isLoading } = useGetCurrentUser();
 
-  const isLoggenIn = () => {
-    return localStorage.getItem('accessToken') !== null;
-  };
-  
   if (isLoading) return <div>Проверка авторизации...</div>;
 
-  if (!isLoggedIn || user?.role !== requiredRole)
+  if (!isLoggedIn() || user?.role !== requiredRole)
     return <Navigate to="/login" />;
 
   if (user && user?.role !== requiredRole) return <Navigate to="/" />;

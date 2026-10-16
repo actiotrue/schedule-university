@@ -6,7 +6,7 @@ export const createGroupFormSchema = z.object({
     .number()
     .gt(0, 'Курс не может быть меньше 1')
     .lte(6, 'Курс не может быть больше 6'),
-  institute: z.string().min(3, 'Поле должно содержать минимум 5 символов'),
+  departmentId: z.number().min(1, 'Выберите институт из списка'),
 });
 
 export type CreateGroupForm = z.infer<typeof createGroupFormSchema>;

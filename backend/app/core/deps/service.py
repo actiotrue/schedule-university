@@ -1,6 +1,8 @@
 from typing import Annotated
 from app.core.broker.dep import get_publisher
 from app.core.broker.connection import RabbitMQConnection
+from app.domain.department.service import DepartmentService
+from app.domain.division.service import DivisionService
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -78,3 +80,13 @@ async def get_building_service(session: AsyncSession = Depends(get_db)):
 
 
 BuildingServiceDep = Annotated[BuildingService, Depends(get_building_service)]
+
+async def get_department_service(session: AsyncSession = Depends(get_db)):
+    return DepartmentService(session=session)
+
+DepartmentServiceDep = Annotated[DepartmentService,Depends(get_department_service)]
+
+async def get_division_service(session: AsyncSession = Depends(get_db)):
+    return DivisionService(session=session)
+
+DivisionServiceDep = Annotated[DivisionService, Depends(get_division_service)]

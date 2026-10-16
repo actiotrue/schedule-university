@@ -1,18 +1,17 @@
-import GroupPage from "@/pages/admin/GroupPage";
-import LessonPage from "@/pages/admin/LessonPage";
-import RoomPage from "@/pages/admin/RoomPage";
-import SubjectPage from "@/pages/admin/SubjectPage";
-import TeacherPage from "@/pages/admin/TeacherPage";
-import LoginPage from "@/pages/auth/LoginPage";
-import RegisterPage from "@/pages/auth/RegisterPage";
-import HomePage from "@/pages/HomePage";
-import SchedulePage from "@/pages/schedule/SchedulePage";
-import AdminLayout from "@/shared/ui/layouts/AdminLayout";
-import Layout from "@/shared/ui/layouts/Layout";
-import { ProtectedRoute } from "@/shared/ui/ProtectedRoute";
-import { PublicOnlyRoute } from "@/shared/ui/PublicOnlyRoute";
-import { Routes, Route } from "react-router";
-
+import GroupPage from '@/pages/admin/GroupPage';
+import LessonPage from '@/pages/admin/LessonPage';
+import RoomPage from '@/pages/admin/RoomPage';
+import SubjectPage from '@/pages/admin/SubjectPage';
+import TeacherPage from '@/pages/admin/TeacherPage';
+import LoginPage from '@/pages/auth/LoginPage';
+import RegisterPage from '@/pages/auth/RegisterPage';
+import HomePage from '@/pages/HomePage';
+import SchedulePage from '@/pages/schedule/SchedulePage';
+import AdminLayout from '@/shared/ui/layouts/AdminLayout';
+import Layout from '@/shared/ui/layouts/Layout';
+import { ProtectedRoute } from '@/shared/ui/ProtectedRoute';
+import { PublicOnlyRoute } from '@/shared/ui/PublicOnlyRoute';
+import { Routes, Route } from 'react-router';
 
 const RoutesProvider = () => {
   return (
