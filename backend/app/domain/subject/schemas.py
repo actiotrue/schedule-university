@@ -1,9 +1,9 @@
 from datetime import datetime
 
-from pydantic import BaseModel
+from app.core.base_schema import BaseSchema
 
 
-class SubjectBase(BaseModel):
+class SubjectBase(BaseSchema):
     name: str
     semester: int
     total_hours: int

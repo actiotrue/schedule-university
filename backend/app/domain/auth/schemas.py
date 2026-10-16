@@ -1,12 +1,11 @@
 import uuid
 from pydantic import (
-    BaseModel,
     ConfigDict,
     EmailStr,
 )
+from app.core.base_schema import BaseSchema
 
-
-class UserBase(BaseModel):
+class UserBase(BaseSchema):
     email: EmailStr
 
     model_config = ConfigDict(from_attributes=True)
@@ -26,7 +25,7 @@ class UserRead(UserBase):
     role: str
 
 
-class TokenPair(BaseModel):
+class TokenPair(BaseSchema):
     access_token: str
     refresh_token: str
 
@@ -35,5 +34,5 @@ class AuthResponse(TokenPair):
     user: UserRead
 
 
-class PasswordChange(BaseModel):
+class PasswordChange(BaseSchema):
     new_password: str

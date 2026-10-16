@@ -1,12 +1,14 @@
 from datetime import datetime
 
-from pydantic import BaseModel, EmailStr
+from pydantic import EmailStr
+from app.core.base_schema import BaseSchema
 
 
-class TeacherBase(BaseModel):
+class TeacherBase(BaseSchema):
     first_name: str
     middle_name: str | None
     last_name: str
+
     email: EmailStr | None
     phone: str | None
     department: str
@@ -15,6 +17,7 @@ class TeacherBase(BaseModel):
 
 class TeacherRead(TeacherBase):
     id: int
+    full_name:str
     created_at: datetime
     updated_at: datetime
 

@@ -35,10 +35,10 @@ async def test_register_and_login_flow(client: AsyncClient):
     login_response = await client.post("/api/v1/login/", data=user_login_data)
     assert login_response.status_code == 200
     login_response_data = login_response.json()
-    assert "access_token" in login_response_data
-    assert "refresh_token" in login_response_data
+    assert "accessToken" in login_response_data
+    assert "refreshToken" in login_response_data
     assert login_response_data["user"]["email"] == user_register.email
-    assert login_response.cookies.get("refresh_token") is not None
+    assert login_response.cookies.get("refreshToken") is not None
 
 
 @pytest.mark.asyncio
@@ -83,14 +83,14 @@ async def test_register_login_logout_flow(client: AsyncClient):
     login_response = await client.post("/api/v1/login/", data=user_login_data)
     assert login_response.status_code == 200
     login_response_data = login_response.json()
-    assert "access_token" in login_response_data
-    assert "refresh_token" in login_response_data
+    assert "accessToken" in login_response_data
+    assert "refreshToken" in login_response_data
     assert login_response_data["user"]["email"] == user_register.email
 
     # In some way cookies are not saved beetween requests
-    refresh_token = login_response.cookies.get("refresh_token")
-    assert refresh_token is not None
-    client.cookies.set("refresh_token", refresh_token)
+    refreshToken = login_response.cookies.get("refreshToken")
+    assert refreshToken is not None
+    client.cookies.set("refreshToken", refreshToken)
     logout_response = await client.post("/api/v1/logout/")
     assert logout_response.status_code == 200
     logout_response_data = logout_response.json()
@@ -109,7 +109,7 @@ async def test_get_current_user(client: AsyncClient, auth_header: dict):
 
 
 @pytest.mark.asyncio
-async def test_refresh_token(client: AsyncClient):
+async def test_refreshToken(client: AsyncClient):
     pass
 
 

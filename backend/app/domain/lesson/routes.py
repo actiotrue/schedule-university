@@ -22,7 +22,7 @@ router = APIRouter(prefix="/lesson", tags=["Lessons"])
 
 
 @router.get("/", response_model=list[LessonById])
-async def get_all_lessons_by_query(
+async def get_lessons(
     service: LessonServiceDep,
     group: int | None = None,
     teacher: int | None = None,
@@ -47,7 +47,7 @@ async def get_all_lessons_by_query(
 
 
 @router.post("/", response_model=LessonReadMinimal, status_code=201)
-async def create(lesson_in: LessonCreate, service: LessonServiceDep):
+async def create_lesson(lesson_in: LessonCreate, service: LessonServiceDep):
     return await service.create(lesson_in=lesson_in)
 
 

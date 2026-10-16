@@ -1,5 +1,5 @@
 import uuid
-from sqlalchemy import Boolean, Date, ForeignKey, UniqueConstraint, Text, String, Integer
+from sqlalchemy import Boolean, Computed, Date, ForeignKey, Index, UniqueConstraint, Text, String, Integer
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.dialects.postgresql import UUID
 
@@ -9,15 +9,27 @@ from app.db.database import Base, int_pk, uniq_str
 class Student(Base):
     id: Mapped[int_pk]
     first_name: Mapped[str] = mapped_column(String(100), nullable=False)
-    middle_name: Mapped[str] = mapped_column(String(100), nullable=False)
-    last_name: Mapped[str] = mapped_column(String(100), nullable=True)
+    middle_name: Mapped[str|None] = mapped_column(String(100), nullable=True)
+    last_name: Mapped[str] = mapped_column(String(100), nullable=False)
     date_of_birth: Mapped[Date] = mapped_column(Date, nullable=False)
-    email: Mapped[str] = mapped_column(String(100), unique=True, nullable=True)
-    phone: Mapped[str] = mapped_column(String(18), unique=True, nullable=True)
+    email: Mapped[str | None] = mapped_column(String(100), unique=True, nullable=True)
+    phone: Mapped[str | None] = mapped_column(String(18), unique=True, nullable=True)
     course: Mapped[int] = mapped_column(Integer, nullable=False)
+
+    full_name: Mapped[str] = mapped_column(
+        String(301),
+        Computed(
+            "last_name || ' ' || first_name || COALESCE(' ' || middle_name, '')",
+            persisted=True
+        )
+    )
 
     group_id: Mapped[int] = mapped_column(ForeignKey("groups.id", ondelete="CASCADE"))
     group: Mapped["Group"] = relationship("Group", back_populates="students")
+
+    __table_args__ = (
+        Index("idx_students_full_name", "full_name"),
+    )
 
 
 class Subject(Base):
@@ -32,11 +44,34 @@ class Subject(Base):
     )
 
 
+class Department(Base):
+    id: Mapped[int_pk]
+    name: Mapped[uniq_str]
+    address: Mapped[uniq_str]
+
+    groups: Mapped[list["Group"]] = relationship("Group",back_populates="department",cascade="all, delete-orphan")
+    divisions: Mapped[list["Division"]] = relationship("Division",back_populates="department",cascade="all, delete-orphan")
+    
+
+class Division(Base):
+    id: Mapped[int_pk]
+    name: Mapped[uniq_str]
+    phone:Mapped[str | None] = mapped_column(String(18), unique=True, nullable=True)
+    email: Mapped[str | None] = mapped_column(String(100), unique=True, nullable=True)
+
+    department_id: Mapped[int] = mapped_column(ForeignKey("departments.id", ondelete="CASCADE"))
+    department: Mapped[Department] = relationship("Department",back_populates="divisions")
+
+    teachers: Mapped[list["Teacher"]] = relationship("Teacher",back_populates="division",cascade="all, delete-orphan")
+
+
 class Group(Base):
     id: Mapped[int_pk]
     name: Mapped[uniq_str]
     course: Mapped[int] = mapped_column(Integer, nullable=False)
-    institute: Mapped[str] = mapped_column(String(100), nullable=False)
+   
+    department_id: Mapped[int] = mapped_column(ForeignKey("departments.id", ondelete="CASCADE"))
+    department: Mapped[Department] = relationship("Department",back_populates="groups")
 
     students: Mapped[list["Student"]] = relationship(
         "Student",
@@ -50,15 +85,29 @@ class Group(Base):
 class Teacher(Base):
     id: Mapped[int_pk]
     first_name: Mapped[str] = mapped_column(String(100), nullable=False)
-    middle_name: Mapped[str] = mapped_column(String(100), nullable=True)
+    middle_name: Mapped[str | None] = mapped_column(String(100), nullable=True)
     last_name: Mapped[str] = mapped_column(String(100), nullable=False)
-    email: Mapped[str] = mapped_column(String(100), unique=True, nullable=True)
-    phone: Mapped[str] = mapped_column(String(18), unique=True, nullable=True)
+    email: Mapped[str | None] = mapped_column(String(100), unique=True, nullable=True)
+    phone: Mapped[str | None] = mapped_column(String(18), unique=True, nullable=True)
     department: Mapped[str] = mapped_column(String(50), nullable=False)
     title: Mapped[str] = mapped_column(String(50), nullable=False)
+    full_name: Mapped[str] = mapped_column(
+        String(301),
+        Computed(
+            "last_name || ' ' || first_name || COALESCE(' ' || middle_name, '')",
+            persisted=True
+        )
+    )
+    
+    division_id: Mapped[int] = mapped_column(ForeignKey("divisions.id",ondelete="CASCADE"))
+    division: Mapped[Division] = relationship("Division",back_populates="teachers") 
 
     lessons: Mapped[list["Lesson"]] = relationship(
         "Lesson", back_populates="teacher", cascade="all, delete-orphan"
+    )
+
+    __table_args__ = (
+        Index("idx_teachers_full_name", "full_name"),
     )
 
 

@@ -1,0 +1,120 @@
+import { useCreateGroupMutation } from '@/entities/group';
+import { COURSES } from '@/entities/group/model/consts';
+import {
+  Modal,
+  Button,
+  Create,
+  FormInput,
+  FormSelect,
+  Spinner,
+} from '@/shared/ui/generic';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { CreateGroupForm, createGroupFormSchema } from '../model/schema';
+import { useGetDepartmentsQuery } from '@/entities/department/api/queries';
+
+export const CreateGroup = () => {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<CreateGroupForm>({
+    resolver: zodResolver(createGroupFormSchema),
+    mode: 'onSubmit',
+  });
+
+  const createGroupMutation = useCreateGroupMutation();
+
+  const { data: departments, isLoading: isDepartmentsLoading } =
+    useGetDepartmentsQuery();
+
+  return (
+    <Modal
+      header={'Добавить новую группу'}
+      triggerButton={
+        <Button
+          icon={<Create />}
+          onClick={() => {
+            setIsModalOpen(true);
+          }}
+        >
+          Добавить группу
+        </Button>
+      }
+      isOpen={isModalOpen}
+      onClose={() => {
+        setIsModalOpen(false);
+        reset();
+      }}
+    >
+      <form
+        onSubmit={handleSubmit((data) =>
+          createGroupMutation.mutate(
+            { body: data },
+            {
+              onSuccess: () => {
+                setIsModalOpen(false);
+              },
+            },
+          ),
+        )}
+        className="flex flex-col items-center justify-center space-y-4 w-full"
+      >
+        <FormInput
+          label="Название группы"
+          placeholder="Введите название группы"
+          errorText={errors.name?.message}
+          registration={register('name')}
+        />
+        <FormSelect
+          label="Курс"
+          registration={register('course', {
+            setValueAs: (value) => (value === '' ? undefined : Number(value)),
+          })}
+          errorText={errors.course?.message}
+          defaultValue=""
+        >
+          <option value="" disabled>
+            Выберите курс
+          </option>
+          {COURSES.map((course) => (
+            <option key={course} value={course}>
+              {course}
+            </option>
+          ))}
+        </FormSelect>
+        <FormSelect
+          label="Институт"
+          registration={register('departmentId')}
+          errorText={errors.departmentId?.message}
+          defaultValue=""
+        >
+          {isDepartmentsLoading ? (
+            <option value="" disabled>Загрузка институтов...</option>
+          ) : (
+            <>
+              <option value="" disabled>
+                Выберите институт
+              </option>
+              {departments?.map((department) => (
+                <option key={department.id} value={department.id}>
+                  {department.name}
+                </option>
+              ))}
+            </>
+          )}
+        </FormSelect>
+        <Button
+          type="submit"
+          className="w-full"
+          disabled={createGroupMutation.isPending}
+        >
+          Добавить группу
+        </Button>
+      </form>
+    </Modal>
+  );
+};

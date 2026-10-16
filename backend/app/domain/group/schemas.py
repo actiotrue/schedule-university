@@ -1,16 +1,17 @@
 from datetime import datetime
 
-from pydantic import BaseModel
+from app.core.base_schema import BaseSchema
+from app.domain.department.schemas import DepartmentRead
 
-
-class GroupBase(BaseModel):
+class GroupBase(BaseSchema):
     name: str
     course: int
-    institute: str
+    department_id: int
 
 
 class GroupRead(GroupBase):
     id: int
+    department: DepartmentRead
     created_at: datetime
     updated_at: datetime
 
@@ -25,4 +26,5 @@ class GroupUpdate(GroupBase):
 
 class GroupSummary(GroupBase):
     id: int
+    department: DepartmentRead
     count_students: int

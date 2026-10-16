@@ -1,0 +1,670 @@
+{
+  "buildings": [
+    {
+      "id": 1,
+      "name": "ГУК",
+      "address": "ул. Университетская, 1"
+    },
+    {
+      "id": 2,
+      "name": "Спортивный комплекс",
+      "address": "ул. Спортивная, 2"
+    },
+    {
+      "id": 3,
+      "name": "Корпус 2",
+      "address": "ул. Университетская, 3"
+    },
+    {
+      "id": 4,
+      "name": "Корпус 3",
+      "address": "ул. Университетская, 4"
+    },
+    {
+      "id": 5,
+      "name": "Колледж",
+      "address": "ул. Колледжная, 1"
+    }
+  ],
+
+  "departments": [
+    {
+      "id": 1,
+      "name": "ИТИ",
+      "address": "ГУК, 1 этаж"
+    },
+    {
+      "id": 2,
+      "name": "ХТИ",
+      "address": "Корпус 2, 1 этаж"
+    },
+    {
+      "id": 3,
+      "name": "ИЛП",
+      "address": "Корпус 2, 2 этаж"
+    },
+    {
+      "id": 4,
+      "name": "СЭИ",
+      "address": "ГУК, 2 этаж"
+    },
+    {
+      "id": 5,
+      "name": "Очно-заочное",
+      "address": "ГУК, 3 этаж"
+    },
+    {
+      "id": 6,
+      "name": "ИЗО",
+      "address": "Корпус 3, 1 этаж"
+    },
+    {
+      "id": 7,
+      "name": "Колледж",
+      "address": "Колледж, 1 этаж"
+    },
+    {
+      "id": 8,
+      "name": "Высшая школа",
+      "address": "ГУК, 4 этаж"
+    }
+  ],
+
+  "rooms": [
+    {
+      "id": 1,
+      "name": "101",
+      "floor": 1,
+      "capacity": 30,
+      "status": true,
+      "building_id": 1
+    },
+    {
+      "id": 2,
+      "name": "102",
+      "floor": 1,
+      "capacity": 60,
+      "status": true,
+      "building_id": 1
+    },
+    {
+      "id": 3,
+      "name": "201",
+      "floor": 2,
+      "capacity": 40,
+      "status": true,
+      "building_id": 1
+    },
+    {
+      "id": 4,
+      "name": "202",
+      "floor": 2,
+      "capacity": 25,
+      "status": true,
+      "building_id": 1
+    },
+    {
+      "id": 5,
+      "name": "301",
+      "floor": 3,
+      "capacity": 80,
+      "status": true,
+      "building_id": 3
+    },
+    {
+      "id": 6,
+      "name": "302",
+      "floor": 3,
+      "capacity": 35,
+      "status": false,
+      "building_id": 3
+    },
+    {
+      "id": 7,
+      "name": "Лаборатория 1",
+      "floor": 1,
+      "capacity": 20,
+      "status": true,
+      "building_id": 4
+    },
+    {
+      "id": 8,
+      "name": "Лаборатория 2",
+      "floor": 1,
+      "capacity": 20,
+      "status": true,
+      "building_id": 4
+    },
+    {
+      "id": 9,
+      "name": "101",
+      "floor": 1,
+      "capacity": 40,
+      "status": true,
+      "building_id": 5
+    },
+    {
+      "id": 10,
+      "name": "102",
+      "floor": 1,
+      "capacity": 30,
+      "status": true,
+      "building_id": 5
+    }
+  ],
+
+  "groups": [
+    {
+      "id": 1,
+      "name": "ПИ-101",
+      "course": 1,
+      "department_id": 1
+    },
+    {
+      "id": 2,
+      "name": "ПИ-102",
+      "course": 1,
+      "department_id": 1
+    },
+    {
+      "id": 3,
+      "name": "ПИ-201",
+      "course": 2,
+      "department_id": 1
+    },
+    {
+      "id": 4,
+      "name": "ПИ-301",
+      "course": 3,
+      "department_id": 1
+    },
+    {
+      "id": 5,
+      "name": "ИВТ-101",
+      "course": 1,
+      "department_id": 2
+    },
+    {
+      "id": 6,
+      "name": "ИВТ-201",
+      "course": 2,
+      "department_id": 2
+    },
+    {
+      "id": 7,
+      "name": "СЭИ-101",
+      "course": 1,
+      "department_id": 4
+    },
+    {
+      "id": 8,
+      "name": "ВШ-101",
+      "course": 1,
+      "department_id": 8
+    }
+  ],
+
+  "subjects": [
+    {
+      "id": 1,
+      "name": "Программирование",
+      "semester": 1,
+      "total_hours": 144,
+      "is_optional": false
+    },
+    {
+      "id": 2,
+      "name": "Математика",
+      "semester": 1,
+      "total_hours": 108,
+      "is_optional": false
+    },
+    {
+      "id": 3,
+      "name": "Базы данных",
+      "semester": 2,
+      "total_hours": 108,
+      "is_optional": false
+    },
+    {
+      "id": 4,
+      "name": "Алгоритмы и структуры данных",
+      "semester": 3,
+      "total_hours": 108,
+      "is_optional": false
+    },
+    {
+      "id": 5,
+      "name": "Операционные системы",
+      "semester": 4,
+      "total_hours": 72,
+      "is_optional": false
+    },
+    {
+      "id": 6,
+      "name": "Web-разработка",
+      "semester": 5,
+      "total_hours": 108,
+      "is_optional": false
+    },
+    {
+      "id": 7,
+      "name": "Иностранный язык",
+      "semester": 1,
+      "total_hours": 72,
+      "is_optional": false
+    },
+    {
+      "id": 8,
+      "name": "Машинное обучение",
+      "semester": 5,
+      "total_hours": 72,
+      "is_optional": true
+    }
+  ],
+
+  "teachers": [
+    {
+      "id": 1,
+      "first_name": "Алексей",
+      "middle_name": "Иванович",
+      "last_name": "Смирнов",
+      "email": "a.smirnov@university.example",
+      "phone": "+79990000001",
+      "department": "Кафедра программирования",
+      "title": "Доцент"
+    },
+    {
+      "id": 2,
+      "first_name": "Елена",
+      "middle_name": "Сергеевна",
+      "last_name": "Иванова",
+      "email": "e.ivanova@university.example",
+      "phone": "+79990000002",
+      "department": "Кафедра математики",
+      "title": "Доцент"
+    },
+    {
+      "id": 3,
+      "first_name": "Дмитрий",
+      "middle_name": "Александрович",
+      "last_name": "Петров",
+      "email": "d.petrov@university.example",
+      "phone": "+79990000003",
+      "department": "Кафедра информационных систем",
+      "title": "Старший преподаватель"
+    },
+    {
+      "id": 4,
+      "first_name": "Мария",
+      "middle_name": "Андреевна",
+      "last_name": "Кузнецова",
+      "email": "m.kuznetsova@university.example",
+      "phone": "+79990000004",
+      "department": "Кафедра компьютерных наук",
+      "title": "Профессор"
+    },
+    {
+      "id": 5,
+      "first_name": "Сергей",
+      "middle_name": "Викторович",
+      "last_name": "Орлов",
+      "email": "s.orlov@university.example",
+      "phone": "+79990000005",
+      "department": "Кафедра программирования",
+      "title": "Ассистент"
+    },
+    {
+      "id": 6,
+      "first_name": "Ольга",
+      "middle_name": null,
+      "last_name": "Морозова",
+      "email": "o.morozova@university.example",
+      "phone": "+79990000006",
+      "department": "Кафедра иностранных языков",
+      "title": "Старший преподаватель"
+    }
+  ],
+
+  "students": [
+    {
+      "id": 1,
+      "first_name": "Иван",
+      "middle_name": "Алексеевич",
+      "last_name": "Соколов",
+      "date_of_birth": "2006-03-15",
+      "email": "ivan.sokolov@student.example",
+      "phone": "+79991110001",
+      "course": 1,
+      "group_id": 1
+    },
+    {
+      "id": 2,
+      "first_name": "Анна",
+      "middle_name": "Дмитриевна",
+      "last_name": "Волкова",
+      "date_of_birth": "2006-07-21",
+      "email": "anna.volkova@student.example",
+      "phone": "+79991110002",
+      "course": 1,
+      "group_id": 1
+    },
+    {
+      "id": 3,
+      "first_name": "Максим",
+      "middle_name": "Сергеевич",
+      "last_name": "Попов",
+      "date_of_birth": "2006-01-11",
+      "email": "maxim.popov@student.example",
+      "phone": "+79991110003",
+      "course": 1,
+      "group_id": 1
+    },
+    {
+      "id": 4,
+      "first_name": "Екатерина",
+      "middle_name": "Андреевна",
+      "last_name": "Лебедева",
+      "date_of_birth": "2006-09-02",
+      "email": "ekaterina.lebedeva@student.example",
+      "phone": "+79991110004",
+      "course": 1,
+      "group_id": 2
+    },
+    {
+      "id": 5,
+      "first_name": "Артем",
+      "middle_name": "Игоревич",
+      "last_name": "Козлов",
+      "date_of_birth": "2006-05-18",
+      "email": "artem.kozlov@student.example",
+      "phone": "+79991110005",
+      "course": 1,
+      "group_id": 2
+    },
+    {
+      "id": 6,
+      "first_name": "София",
+      "middle_name": "Романовна",
+      "last_name": "Новикова",
+      "date_of_birth": "2005-12-09",
+      "email": "sofia.novikova@student.example",
+      "phone": "+79991110006",
+      "course": 2,
+      "group_id": 3
+    },
+    {
+      "id": 7,
+      "first_name": "Даниил",
+      "middle_name": "Максимович",
+      "last_name": "Морозов",
+      "date_of_birth": "2005-04-27",
+      "email": "daniil.morozov@student.example",
+      "phone": "+79991110007",
+      "course": 2,
+      "group_id": 3
+    },
+    {
+      "id": 8,
+      "first_name": "Полина",
+      "middle_name": null,
+      "last_name": "Федорова",
+      "date_of_birth": "2004-11-13",
+      "email": "polina.fedorova@student.example",
+      "phone": null,
+      "course": 3,
+      "group_id": 4
+    },
+    {
+      "id": 9,
+      "first_name": "Никита",
+      "middle_name": "Олегович",
+      "last_name": "Васильев",
+      "date_of_birth": "2004-02-26",
+      "email": null,
+      "phone": "+79991110009",
+      "course": 3,
+      "group_id": 4
+    },
+    {
+      "id": 10,
+      "first_name": "Марина",
+      "middle_name": "Ильинична",
+      "last_name": "Зайцева",
+      "date_of_birth": "2006-08-30",
+      "email": "marina.zaytseva@student.example",
+      "phone": "+79991110010",
+      "course": 1,
+      "group_id": 5
+    },
+    {
+      "id": 11,
+      "first_name": "Кирилл",
+      "middle_name": "Артемович",
+      "last_name": "Павлов",
+      "date_of_birth": "2005-06-14",
+      "email": "kirill.pavlov@student.example",
+      "phone": "+79991110011",
+      "course": 2,
+      "group_id": 6
+    },
+    {
+      "id": 12,
+      "first_name": "Алина",
+      "middle_name": "Владимировна",
+      "last_name": "Белова",
+      "date_of_birth": "2005-10-05",
+      "email": "alina.belova@student.example",
+      "phone": "+79991110012",
+      "course": 2,
+      "group_id": 6
+    },
+    {
+      "id": 13,
+      "first_name": "Роман",
+      "middle_name": "Петрович",
+      "last_name": "Семенов",
+      "date_of_birth": "2006-03-19",
+      "email": "roman.semenov@student.example",
+      "phone": "+79991110013",
+      "course": 1,
+      "group_id": 7
+    },
+    {
+      "id": 14,
+      "first_name": "Виктория",
+      "middle_name": "Алексеевна",
+      "last_name": "Ершова",
+      "date_of_birth": "2006-06-22",
+      "email": "victoria.ershova@student.example",
+      "phone": "+79991110014",
+      "course": 1,
+      "group_id": 7
+    },
+    {
+      "id": 15,
+      "first_name": "Александр",
+      "middle_name": "Игоревич",
+      "last_name": "Громов",
+      "date_of_birth": "2006-02-08",
+      "email": "alexander.gromov@student.example",
+      "phone": "+79991110015",
+      "course": 1,
+      "group_id": 8
+    }
+  ],
+
+  "lessons": [
+    {
+      "id": 1,
+      "time_id": 1,
+      "day_of_week": 1,
+      "type": "lecture",
+      "subject_id": 1,
+      "teacher_id": 1,
+      "room_id": 2,
+      "group_id": 1
+    },
+    {
+      "id": 2,
+      "time_id": 2,
+      "day_of_week": 1,
+      "type": "practice",
+      "subject_id": 2,
+      "teacher_id": 2,
+      "room_id": 1,
+      "group_id": 1
+    },
+    {
+      "id": 3,
+      "time_id": 3,
+      "day_of_week": 1,
+      "type": "lecture",
+      "subject_id": 3,
+      "teacher_id": 3,
+      "room_id": 5,
+      "group_id": 3
+    },
+    {
+      "id": 4,
+      "time_id": 4,
+      "day_of_week": 2,
+      "type": "practice",
+      "subject_id": 1,
+      "teacher_id": 5,
+      "room_id": 7,
+      "group_id": 2
+    },
+    {
+      "id": 5,
+      "time_id": 5,
+      "day_of_week": 2,
+      "type": "lecture",
+      "subject_id": 4,
+      "teacher_id": 4,
+      "room_id": 3,
+      "group_id": 4
+    },
+    {
+      "id": 6,
+      "time_id": 6,
+      "day_of_week": 2,
+      "type": "practice",
+      "subject_id": 3,
+      "teacher_id": 3,
+      "room_id": 4,
+      "group_id": 3
+    },
+    {
+      "id": 7,
+      "time_id": 1,
+      "day_of_week": 3,
+      "type": "lecture",
+      "subject_id": 5,
+      "teacher_id": 4,
+      "room_id": 5,
+      "group_id": 6
+    },
+    {
+      "id": 8,
+      "time_id": 3,
+      "day_of_week": 3,
+      "type": "practice",
+      "subject_id": 6,
+      "teacher_id": 1,
+      "room_id": 8,
+      "group_id": 4
+    },
+    {
+      "id": 9,
+      "time_id": 2,
+      "day_of_week": 4,
+      "type": "practice",
+      "subject_id": 7,
+      "teacher_id": 6,
+      "room_id": 1,
+      "group_id": 1
+    },
+    {
+      "id": 10,
+      "time_id": 4,
+      "day_of_week": 4,
+      "type": "lecture",
+      "subject_id": 8,
+      "teacher_id": 4,
+      "room_id": 3,
+      "group_id": 4
+    },
+    {
+      "id": 11,
+      "time_id": 5,
+      "day_of_week": 5,
+      "type": "lecture",
+      "subject_id": 1,
+      "teacher_id": 1,
+      "room_id": 2,
+      "group_id": 5
+    },
+    {
+      "id": 12,
+      "time_id": 6,
+      "day_of_week": 5,
+      "type": "practice",
+      "subject_id": 5,
+      "teacher_id": 4,
+      "room_id": 7,
+      "group_id": 6
+    },
+    {
+      "id": 13,
+      "time_id": 1,
+      "day_of_week": 6,
+      "type": "lecture",
+      "subject_id": 2,
+      "teacher_id": 2,
+      "room_id": 2,
+      "group_id": 5
+    },
+    {
+      "id": 14,
+      "time_id": 2,
+      "day_of_week": 6,
+      "type": "practice",
+      "subject_id": 6,
+      "teacher_id": 5,
+      "room_id": 9,
+      "group_id": 8
+    },
+    {
+      "id": 15,
+      "time_id": 3,
+      "day_of_week": 6,
+      "type": "lecture",
+      "subject_id": 7,
+      "teacher_id": 6,
+      "room_id": 10,
+      "group_id": 7
+    }
+  ],
+
+  "users": [
+    {
+      "id": "00000000-0000-0000-0000-000000000001",
+      "email": "admin@university.example",
+      "password": "admin123",
+      "role": "admin"
+    },
+    {
+      "id": "00000000-0000-0000-0000-000000000002",
+      "email": "teacher@university.example",
+      "password": "teacher123",
+      "role": "teacher"
+    },
+    {
+      "id": "00000000-0000-0000-0000-000000000003",
+      "email": "student@university.example",
+      "password": "student123",
+      "role": "user"
+    }
+  ]
+}
